@@ -22,7 +22,7 @@ const PROJECTS = [
   {
     num: "01",
     title: "CrackTheTest.ai",
-    desc: "Full-stack AI test generator with OpenAI, Supabase auth, Stripe payments and a FastAPI ML backend. Creates personalized exams from any uploaded notes.",
+    desc: "AI test generator with Stripe payments, Supabase auth & FastAPI backend. Upload notes → get a full exam.",
     tags: ["Next.js", "FastAPI", "OpenAI", "Supabase", "Stripe"],
     category: "AI",
     github: "https://github.com/Giorgiod91/CrackTheTest",
@@ -36,7 +36,7 @@ const PROJECTS = [
   {
     num: "02",
     title: "GamerConnect",
-    desc: "Real-time gaming platform with AI teammate matching, Supabase live chat, tournament hub and IRL meetup radar. Built with the T3 stack.",
+    desc: "Real-time gaming platform with AI teammate matching, Supabase live chat & tournament hub. T3 stack.",
     tags: ["Next.js", "Supabase", "TypeScript", "Framer Motion"],
     category: "Web",
     github: "https://github.com/Giorgiod91/GamerConnect",
@@ -50,7 +50,7 @@ const PROJECTS = [
   {
     num: "03",
     title: "PicturaSearch",
-    desc: "Upload a product photo — CNN model analyzes it and finds visually matching items live on eBay. No text queries needed.",
+    desc: "Upload a photo → CNN model finds matching products on eBay. Visual search, no text queries needed.",
     tags: ["TypeScript", "Python", "CNN", "eBay API", "ML"],
     category: "AI",
     github: "https://github.com/Giorgiod91/picturaSearch",
@@ -64,7 +64,7 @@ const PROJECTS = [
   {
     num: "04",
     title: "Reactify",
-    desc: "GPT-4 powered React component designer. Describe what you need, get production-ready TypeScript + Tailwind code in seconds.",
+    desc: "Describe a UI component → get production-ready TypeScript + Tailwind code instantly. GPT-4 powered.",
     tags: ["Next.js", "GPT-4", "Flask", "TypeScript", "OpenAI"],
     category: "AI",
     github: "https://github.com/Giorgiod91/AI-React-Component-Designer-Frontend",
@@ -78,7 +78,7 @@ const PROJECTS = [
   {
     num: "05",
     title: "PraktikumsFinder",
-    desc: "Connects career-changers with IHK-certified training companies. Smart filters + automated company verification via Python/FastAPI.",
+    desc: "Connects career-changers with IHK-certified companies. Smart location filters & automated verification.",
     tags: ["Python", "FastAPI", "Next.js", "PostgreSQL"],
     category: "Web",
     github: "https://github.com/Giorgiod91/PraktikumFinder",
@@ -92,7 +92,7 @@ const PROJECTS = [
   {
     num: "06",
     title: "EduProgress",
-    desc: "Study progress tracker with visual dashboards, streaks and AI-powered insights. Tracks goals and learning velocity across subjects.",
+    desc: "Study tracker with visual dashboards, streaks & AI insights. Track goals and learning velocity.",
     tags: ["Next.js", "TypeScript", "Supabase", "Tailwind"],
     category: "Web",
     github: "https://github.com/Giorgiod91/EduProgress",
@@ -106,7 +106,7 @@ const PROJECTS = [
   {
     num: "07",
     title: "Go2Spot",
-    desc: "Travel discovery app that finds attractions, nightlife and hidden gems in any city. Personalized recommendations via Python ML backend.",
+    desc: "Travel discovery app — finds attractions & hidden gems in any city. Personalized via Python ML backend.",
     tags: ["TypeScript", "Next.js", "Python", "ML", "Maps API"],
     category: "AI",
     github: "https://github.com/Giorgiod91/-Go2Spot",
@@ -120,7 +120,7 @@ const PROJECTS = [
   {
     num: "08",
     title: "AntiCheat AI",
-    desc: "AI-powered anti-cheat system with a TypeScript frontend and Python ML backend for detecting suspicious behaviour patterns in real time.",
+    desc: "Anti-cheat system with TypeScript frontend & Python ML backend that detects suspicious behaviour in real time.",
     tags: ["TypeScript", "Python", "AI", "Next.js", "ML"],
     category: "AI",
     github: "https://github.com/Giorgiod91/AntiCheatAIFrontend",
@@ -169,7 +169,7 @@ function ProjectPreview({ project }: { project: typeof PROJECTS[0] }) {
 
       {/* Preview area — real screenshot OR styled gradient */}
       {project.screenshot ? (
-        <div className="relative h-36 overflow-hidden">
+        <div className="relative h-28 overflow-hidden">
           <Image
             src={project.screenshot}
             alt={`${project.title} preview`}
@@ -177,28 +177,27 @@ function ProjectPreview({ project }: { project: typeof PROJECTS[0] }) {
             className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
           <span
             className="absolute right-2 top-2 rounded-md px-2 py-0.5 text-[9px] font-bold tracking-wider"
-            style={{ background: `${project.previewAccent}22`, color: project.previewAccent, border: `1px solid ${project.previewAccent}44` }}
+            style={{ background: `${project.previewAccent}33`, color: project.previewAccent, border: `1px solid ${project.previewAccent}55` }}
           >
             {project.badge}
           </span>
         </div>
       ) : (
         <div
-          className="relative flex h-36 items-center justify-center overflow-hidden"
+          className="relative flex h-28 items-center justify-center overflow-hidden"
           style={{ background: project.previewGradient }}
         >
-          <div className="absolute h-32 w-32 rounded-full blur-3xl opacity-40" style={{ background: project.previewAccent }} />
+          <div className="absolute h-24 w-24 rounded-full blur-3xl opacity-40" style={{ background: project.previewAccent }} />
           <div className="relative z-10 text-center">
-            <div className="mb-2 text-3xl">{project.icon}</div>
-            <p className="font-display text-xs tracking-widest text-white/80 uppercase">{project.title}</p>
+            <div className="mb-1.5 text-2xl">{project.icon}</div>
+            <p className="font-display text-[10px] tracking-widest text-white/80 uppercase">{project.title}</p>
           </div>
           <span
             className="absolute right-2 top-2 rounded-md px-2 py-0.5 text-[9px] font-bold tracking-wider"
-            style={{ background: `${project.previewAccent}22`, color: project.previewAccent, border: `1px solid ${project.previewAccent}44` }}
+            style={{ background: `${project.previewAccent}33`, color: project.previewAccent, border: `1px solid ${project.previewAccent}55` }}
           >
             {project.badge}
           </span>
@@ -488,7 +487,7 @@ function Projects() {
           </motion.div>
         </motion.div>
 
-        <motion.div layout className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <motion.div layout className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           <AnimatePresence mode="popLayout">
             {filtered.map((project) => (
               <motion.div
@@ -740,7 +739,7 @@ function Footer() {
 
 export default function HomePage() {
   return (
-    <main className="noise-bg relative min-h-screen overflow-x-hidden bg-[#08080c] text-white">
+    <main className="noise-bg relative min-h-screen overflow-x-hidden bg-[#0d1117] text-white">
       <Navbar />
       <Hero />
       <Marquee />

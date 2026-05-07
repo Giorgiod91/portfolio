@@ -8,8 +8,8 @@
 
 body {
   font-family: var(--font-sans);
-  background: #08080c;
-  color: #f1f5f9;
+  background: #0d1117;
+  color: #e2e8f0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -80,10 +80,10 @@ body {
 /* ── Project cards ──────────────────────────────────────────────────── */
 .project-card {
   position: relative;
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.04);
   border-radius: 1rem;
-  padding: 1.75rem;
+  padding: 1.25rem;
   transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   overflow: hidden;
 }
@@ -113,7 +113,7 @@ body {
 /* ── Terminal card ──────────────────────────────────────────────────── */
 .terminal-card {
   border: 1px solid rgba(255, 255, 255, 0.1);
-  background: #0d0d14;
+  background: #131720;
   border-radius: 1rem;
   overflow: hidden;
   box-shadow:
