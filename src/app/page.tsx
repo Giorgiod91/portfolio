@@ -54,7 +54,7 @@ const PROJECTS = [
     tags: ["TypeScript", "Python", "CNN", "eBay API", "ML"],
     category: "AI",
     github: "https://github.com/Giorgiod91/picturaSearch",
-    live: "https://pictura-search.vercel.app",
+    live: "https://picturasearch.vercel.app",
     icon: "🖼️",
     screenshot: "/screenshots/picturasearch.png",
     previewGradient: "linear-gradient(135deg, #0a0010 0%, #1a0030 50%, #2d0050 100%)",
