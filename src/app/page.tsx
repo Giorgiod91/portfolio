@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence, type Variants } from "framer-motion";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 // ── Variants ───────────────────────────────────────────────────────────────
@@ -21,12 +22,13 @@ const PROJECTS = [
   {
     num: "01",
     title: "CrackTheTest.ai",
-    desc: "AI-powered test generator that creates personalized exams from any topic. Upload notes, get a full quiz in seconds.",
-    tags: ["Next.js", "FastAPI", "OpenAI", "Python"],
+    desc: "Full-stack AI test generator with OpenAI, Supabase auth, Stripe payments and a FastAPI ML backend. Creates personalized exams from any uploaded notes.",
+    tags: ["Next.js", "FastAPI", "OpenAI", "Supabase", "Stripe"],
     category: "AI",
     github: "https://github.com/Giorgiod91/CrackTheTest",
     live: "https://crack-the-test.vercel.app",
     icon: "🧠",
+    screenshot: null as string | null,
     previewGradient: "linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%)",
     previewAccent: "#6366f1",
     badge: "AI · Live",
@@ -34,67 +36,100 @@ const PROJECTS = [
   {
     num: "02",
     title: "GamerConnect",
-    desc: "Real-time platform for gamers — teammate matching, Supabase live chat, tournament hub, and IRL meetup radar.",
-    tags: ["Next.js", "Supabase", "TypeScript", "Realtime"],
+    desc: "Real-time gaming platform with AI teammate matching, Supabase live chat, tournament hub and IRL meetup radar. Built with the T3 stack.",
+    tags: ["Next.js", "Supabase", "TypeScript", "Framer Motion"],
     category: "Web",
     github: "https://github.com/Giorgiod91/GamerConnect",
-    live: "",
+    live: "https://gamer-connect-chi.vercel.app/",
     icon: "🎮",
+    screenshot: "/screenshots/gc-hero.png",
     previewGradient: "linear-gradient(135deg, #020617 0%, #0c1445 50%, #0e2a5e 100%)",
     previewAccent: "#22d3ee",
-    badge: "Web · Realtime",
+    badge: "Web · Live",
   },
   {
     num: "03",
-    title: "Reactify",
-    desc: "GPT-4 powered React component designer. Describe a component, get production-ready TypeScript + Tailwind code instantly.",
-    tags: ["Next.js", "GPT-4", "TypeScript", "AI"],
+    title: "PicturaSearch",
+    desc: "Upload a product photo — CNN model analyzes it and finds visually matching items live on eBay. No text queries needed.",
+    tags: ["TypeScript", "Python", "CNN", "eBay API", "ML"],
     category: "AI",
-    github: "https://github.com/Giorgiod91/AI-React-Component-Designer-Frontend",
-    live: "",
-    icon: "⚛️",
-    previewGradient: "linear-gradient(135deg, #0a0f1e 0%, #0d2137 50%, #0a3d62 100%)",
-    previewAccent: "#38bdf8",
-    badge: "AI · Tool",
+    github: "https://github.com/Giorgiod91/picturaSearch",
+    live: "https://pictura-search.vercel.app",
+    icon: "🖼️",
+    screenshot: null as string | null,
+    previewGradient: "linear-gradient(135deg, #0a0010 0%, #1a0030 50%, #2d0050 100%)",
+    previewAccent: "#c084fc",
+    badge: "AI · CV · Live",
   },
   {
     num: "04",
-    title: "PraktikumsFinder",
-    desc: "Platform connecting career changers with IHK-certified training companies. Smart filters, automated verification.",
-    tags: ["Python", "FastAPI", "Next.js", "PostgreSQL"],
-    category: "Web",
-    github: "https://github.com/Giorgiod91/PraktikumFinder",
-    live: "",
-    icon: "🔍",
-    previewGradient: "linear-gradient(135deg, #0c0a00 0%, #1c1400 50%, #292000 100%)",
-    previewAccent: "#fbbf24",
-    badge: "Web · Python",
+    title: "Reactify",
+    desc: "GPT-4 powered React component designer. Describe what you need, get production-ready TypeScript + Tailwind code in seconds.",
+    tags: ["Next.js", "GPT-4", "Flask", "TypeScript", "OpenAI"],
+    category: "AI",
+    github: "https://github.com/Giorgiod91/AI-React-Component-Designer-Frontend",
+    live: "https://aicomponentgenerator-nine.vercel.app/",
+    icon: "⚛️",
+    screenshot: null as string | null,
+    previewGradient: "linear-gradient(135deg, #0a0f1e 0%, #0d2137 50%, #0a3d62 100%)",
+    previewAccent: "#38bdf8",
+    badge: "AI · Live",
   },
   {
     num: "05",
-    title: "PicturaSearch",
-    desc: "AI image search that finds matching eBay products from a photo using CNN models. No text queries — just upload.",
-    tags: ["Python", "CNN", "eBay API", "TensorFlow"],
-    category: "AI",
-    github: "https://github.com/Giorgiod91",
-    live: "",
-    icon: "🖼️",
-    previewGradient: "linear-gradient(135deg, #0a0010 0%, #1a0030 50%, #2d0050 100%)",
-    previewAccent: "#c084fc",
-    badge: "AI · CV",
+    title: "PraktikumsFinder",
+    desc: "Connects career-changers with IHK-certified training companies. Smart filters + automated company verification via Python/FastAPI.",
+    tags: ["Python", "FastAPI", "Next.js", "PostgreSQL"],
+    category: "Web",
+    github: "https://github.com/Giorgiod91/PraktikumFinder",
+    live: "https://praktikumsfinder.vercel.app/",
+    icon: "🔍",
+    screenshot: null as string | null,
+    previewGradient: "linear-gradient(135deg, #0c0a00 0%, #1c1400 50%, #292000 100%)",
+    previewAccent: "#fbbf24",
+    badge: "Web · Live",
   },
   {
     num: "06",
     title: "EduProgress",
-    desc: "Educational tracker with AI-powered insights. Track goals, streaks, and learning velocity across subjects.",
+    desc: "Study progress tracker with visual dashboards, streaks and AI-powered insights. Tracks goals and learning velocity across subjects.",
     tags: ["Next.js", "TypeScript", "Supabase", "Tailwind"],
     category: "Web",
     github: "https://github.com/Giorgiod91/EduProgress",
-    live: "",
+    live: "https://edu-progress.vercel.app/",
     icon: "📚",
+    screenshot: null as string | null,
     previewGradient: "linear-gradient(135deg, #000d0a 0%, #001a12 50%, #00301f 100%)",
     previewAccent: "#34d399",
-    badge: "Web · EdTech",
+    badge: "Web · Live",
+  },
+  {
+    num: "07",
+    title: "Go2Spot",
+    desc: "Travel discovery app that finds attractions, nightlife and hidden gems in any city. Personalized recommendations via Python ML backend.",
+    tags: ["TypeScript", "Next.js", "Python", "ML", "Maps API"],
+    category: "AI",
+    github: "https://github.com/Giorgiod91/-Go2Spot",
+    live: "",
+    icon: "🗺️",
+    screenshot: null as string | null,
+    previewGradient: "linear-gradient(135deg, #080c04 0%, #0e1a08 50%, #142810 100%)",
+    previewAccent: "#86efac",
+    badge: "AI · Travel",
+  },
+  {
+    num: "08",
+    title: "AntiCheat AI",
+    desc: "AI-powered anti-cheat system with a TypeScript frontend and Python ML backend for detecting suspicious behaviour patterns in real time.",
+    tags: ["TypeScript", "Python", "AI", "Next.js", "ML"],
+    category: "AI",
+    github: "https://github.com/Giorgiod91/AntiCheatAIFrontend",
+    live: "",
+    icon: "🛡️",
+    screenshot: null as string | null,
+    previewGradient: "linear-gradient(135deg, #0c0004 0%, #1a000a 50%, #280010 100%)",
+    previewAccent: "#fb7185",
+    badge: "AI · Security",
   },
 ];
 
@@ -116,6 +151,10 @@ const MARQUEE_ITEMS = [
 // ── Project Preview (browser mockup) ──────────────────────────────────────
 
 function ProjectPreview({ project }: { project: typeof PROJECTS[0] }) {
+  const urlLabel = project.live
+    ? project.live.replace("https://", "").replace(/\/$/, "")
+    : `${project.title.toLowerCase().replace(/[^a-z]/g, "")}.app`;
+
   return (
     <div className="mb-5 overflow-hidden rounded-xl border border-white/8">
       {/* Browser chrome */}
@@ -123,35 +162,48 @@ function ProjectPreview({ project }: { project: typeof PROJECTS[0] }) {
         <span className="h-2.5 w-2.5 rounded-full bg-red-500/70" />
         <span className="h-2.5 w-2.5 rounded-full bg-yellow-500/70" />
         <span className="h-2.5 w-2.5 rounded-full bg-green-500/70" />
-        <div className="mx-2 flex-1 rounded bg-white/6 px-2 py-0.5 text-center text-[9px] text-slate-600 font-mono">
-          {project.live ? project.live.replace("https://", "") : `${project.title.toLowerCase().replace(/[^a-z]/g, "")}.app`}
+        <div className="mx-2 flex-1 rounded bg-white/6 px-2 py-0.5 text-center font-mono text-[9px] text-slate-600">
+          {urlLabel}
         </div>
       </div>
-      {/* Preview area */}
-      <div
-        className="relative flex h-32 items-center justify-center overflow-hidden"
-        style={{ background: project.previewGradient }}
-      >
-        {/* Glow dot */}
+
+      {/* Preview area — real screenshot OR styled gradient */}
+      {project.screenshot ? (
+        <div className="relative h-36 overflow-hidden">
+          <Image
+            src={project.screenshot}
+            alt={`${project.title} preview`}
+            fill
+            className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          />
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+          <span
+            className="absolute right-2 top-2 rounded-md px-2 py-0.5 text-[9px] font-bold tracking-wider"
+            style={{ background: `${project.previewAccent}22`, color: project.previewAccent, border: `1px solid ${project.previewAccent}44` }}
+          >
+            {project.badge}
+          </span>
+        </div>
+      ) : (
         <div
-          className="absolute h-32 w-32 rounded-full blur-3xl opacity-40"
-          style={{ background: project.previewAccent }}
-        />
-        {/* Icon + title */}
-        <div className="relative z-10 text-center">
-          <div className="mb-2 text-3xl">{project.icon}</div>
-          <p className="font-display text-xs tracking-widest text-white uppercase opacity-80">
-            {project.title}
-          </p>
-        </div>
-        {/* Corner badge */}
-        <span
-          className="absolute right-2 top-2 rounded-md px-2 py-0.5 text-[9px] font-bold tracking-wider"
-          style={{ background: `${project.previewAccent}22`, color: project.previewAccent, border: `1px solid ${project.previewAccent}44` }}
+          className="relative flex h-36 items-center justify-center overflow-hidden"
+          style={{ background: project.previewGradient }}
         >
-          {project.badge}
-        </span>
-      </div>
+          <div className="absolute h-32 w-32 rounded-full blur-3xl opacity-40" style={{ background: project.previewAccent }} />
+          <div className="relative z-10 text-center">
+            <div className="mb-2 text-3xl">{project.icon}</div>
+            <p className="font-display text-xs tracking-widest text-white/80 uppercase">{project.title}</p>
+          </div>
+          <span
+            className="absolute right-2 top-2 rounded-md px-2 py-0.5 text-[9px] font-bold tracking-wider"
+            style={{ background: `${project.previewAccent}22`, color: project.previewAccent, border: `1px solid ${project.previewAccent}44` }}
+          >
+            {project.badge}
+          </span>
+        </div>
+      )}
     </div>
   );
 }
@@ -436,7 +488,7 @@ function Projects() {
           </motion.div>
         </motion.div>
 
-        <motion.div layout className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <motion.div layout className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           <AnimatePresence mode="popLayout">
             {filtered.map((project) => (
               <motion.div
