@@ -8,7 +8,7 @@
 
 body {
   font-family: var(--font-sans);
-  background: #0d1117;
+  background: #0c1018;
   color: #e2e8f0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -80,8 +80,8 @@ body {
 /* ── Project cards ──────────────────────────────────────────────────── */
 .project-card {
   position: relative;
-  border: 1px solid rgba(255, 255, 255, 0.13);
-  background: rgba(255, 255, 255, 0.065);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.07);
   border-radius: 1rem;
   padding: 1.25rem;
   transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
@@ -112,8 +112,8 @@ body {
 
 /* ── Terminal card ──────────────────────────────────────────────────── */
 .terminal-card {
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: #131720;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: #141c2a;
   border-radius: 1rem;
   overflow: hidden;
   box-shadow:
@@ -142,11 +142,11 @@ body {
   align-items: center;
   padding: 0.35rem 0.8rem;
   border-radius: 0.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.13);
-  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.09);
   font-size: 0.78rem;
   font-weight: 600;
-  color: #cbd5e1;
+  color: #e2e8f0;
   transition: all 0.2s ease;
   font-family: var(--font-mono);
   letter-spacing: -0.01em;
@@ -204,14 +204,14 @@ body {
   align-items: center;
   gap: 0.5rem;
   background: transparent;
-  color: #cbd5e1;
+  color: #e2e8f0;
   font-family: var(--font-rajdhani);
   font-weight: 600;
   font-size: 0.9rem;
   letter-spacing: 0.04em;
   border-radius: 0.75rem;
   padding: 0.875rem 1.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.20);
   cursor: pointer;
   text-decoration: none;
   white-space: nowrap;
@@ -229,7 +229,7 @@ body {
 /* ── Nav link ───────────────────────────────────────────────────────── */
 .nav-link {
   position: relative;
-  color: #64748b;
+  color: #8b9db8;
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -264,7 +264,7 @@ body {
   font-family: var(--font-display);
   font-size: 7rem;
   line-height: 1;
-  color: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.055);
   position: absolute;
   top: -1.5rem;
   left: -0.5rem;

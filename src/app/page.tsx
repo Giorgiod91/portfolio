@@ -478,7 +478,7 @@ function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.24 }}
-              className="mt-5 max-w-md text-base leading-relaxed text-slate-400 sm:text-lg"
+              className="mt-5 max-w-md text-base leading-relaxed text-slate-300 sm:text-lg"
             >
               Full-Stack Developer building AI-powered apps that solve real
               problems. Next.js · Python · FastAPI · OpenAI.
@@ -512,7 +512,7 @@ function Hero() {
               ].map(([val, label]) => (
                 <div key={label}>
                   <p className="font-display text-2xl text-white">{val}</p>
-                  <p className="mt-0.5 text-xs text-slate-600">{label}</p>
+                  <p className="mt-0.5 text-xs text-slate-400">{label}</p>
                 </div>
               ))}
             </motion.div>
@@ -529,10 +529,10 @@ function Hero() {
         animate={{ y: [0, 8, 0] }}
         transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
       >
-        <p className="font-mono text-[9px] tracking-[0.3em] text-slate-700 uppercase">
+        <p className="font-mono text-[9px] tracking-[0.3em] text-slate-500 uppercase">
           scroll
         </p>
-        <div className="h-8 w-px bg-gradient-to-b from-slate-700 to-transparent" />
+        <div className="h-8 w-px bg-gradient-to-b from-slate-500 to-transparent" />
       </motion.div>
     </section>
   );
@@ -601,7 +601,7 @@ function Projects() {
                 className={`rounded-lg px-4 py-1.5 font-mono text-xs tracking-wider uppercase transition-all ${
                   filter === t
                     ? "bg-orange-500/15 text-orange-300 border border-orange-500/30"
-                    : "border border-white/8 text-slate-600 hover:text-slate-400 hover:border-white/15"
+                    : "border border-white/15 text-slate-400 hover:text-slate-200 hover:border-white/25"
                 }`}
               >
                 {t}
@@ -629,14 +629,14 @@ function Projects() {
                 <ProjectPreview project={project} />
 
                 {/* Number */}
-                <p className="mb-2 font-mono text-[10px] text-slate-700">
+                <p className="mb-2 font-mono text-[10px] text-slate-500">
                   {project.num}
                 </p>
 
                 <h3 className="font-display mb-2 text-sm tracking-wider text-white">
                   {project.title}
                 </h3>
-                <p className="mb-5 flex-1 text-sm leading-relaxed text-slate-400">
+                <p className="mb-5 flex-1 text-sm leading-relaxed text-slate-300">
                   {project.desc}
                 </p>
 
@@ -645,7 +645,7 @@ function Projects() {
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="rounded-md border border-white/8 bg-white/4 px-2 py-0.5 font-mono text-[10px] text-slate-500"
+                      className="rounded-md border border-white/15 bg-white/6 px-2 py-0.5 font-mono text-[10px] text-slate-400"
                     >
                       {tag}
                     </span>
@@ -653,12 +653,12 @@ function Projects() {
                 </div>
 
                 {/* Links */}
-                <div className="flex items-center gap-4 border-t border-white/5 pt-4">
+                <div className="flex items-center gap-4 border-t border-white/10 pt-4">
                   <a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 font-mono text-xs text-slate-600 transition-colors hover:text-white"
+                    className="flex items-center gap-1.5 font-mono text-xs text-slate-400 transition-colors hover:text-white"
                   >
                     <svg
                       viewBox="0 0 24 24"
@@ -674,7 +674,7 @@ function Projects() {
                       href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 font-mono text-xs text-slate-600 transition-colors hover:text-orange-400"
+                      className="flex items-center gap-1.5 font-mono text-xs text-slate-400 transition-colors hover:text-orange-400"
                     >
                       <svg
                         viewBox="0 0 24 24"
@@ -709,7 +709,7 @@ function Projects() {
 
 function Stack() {
   return (
-    <section id="stack" className="border-t border-white/5 py-28">
+    <section id="stack" className="border-t border-white/10 py-28">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <motion.div
           variants={stagger}
@@ -766,7 +766,7 @@ function Stack() {
 
 function About() {
   return (
-    <section id="about" className="border-t border-white/5 py-28">
+    <section id="about" className="border-t border-white/10 py-28">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="grid items-start gap-16 lg:grid-cols-2">
           <motion.div
@@ -793,7 +793,7 @@ function About() {
             </div>
             <motion.div
               variants={fadeUp}
-              className="space-y-4 text-sm leading-relaxed text-slate-400"
+              className="space-y-4 text-sm leading-relaxed text-slate-300"
             >
               <p>
                 I&apos;m a Full-Stack Developer from Germany, simultaneously
@@ -860,20 +860,20 @@ function About() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.5 }}
-                className="flex gap-4 rounded-xl border border-white/6 bg-white/2 p-4 transition-colors hover:border-orange-500/20 hover:bg-orange-500/3"
+                className="flex gap-4 rounded-xl border border-white/12 bg-white/5 p-4 transition-colors hover:border-orange-500/30 hover:bg-orange-500/6"
               >
                 <div
                   className="mt-1.5 h-2 w-2 shrink-0 rounded-full"
                   style={{ background: item.dot }}
                 />
                 <div>
-                  <p className="mb-0.5 font-mono text-[10px] text-slate-600">
+                  <p className="mb-0.5 font-mono text-[10px] text-slate-400">
                     {item.year}
                   </p>
                   <p className="text-sm font-semibold text-white">
                     {item.title}
                   </p>
-                  <p className="text-xs text-slate-600">{item.desc}</p>
+                  <p className="text-xs text-slate-400">{item.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -888,7 +888,7 @@ function About() {
 
 function Contact() {
   return (
-    <section id="contact" className="border-t border-white/5 py-28">
+    <section id="contact" className="border-t border-white/10 py-28">
       <div className="mx-auto max-w-5xl px-5 sm:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -908,7 +908,7 @@ function Contact() {
             <h2 className="font-display text-4xl text-white sm:text-5xl">
               Got a project <span className="text-gradient">in mind?</span>
             </h2>
-            <p className="mx-auto mt-5 max-w-md text-sm leading-relaxed text-slate-400">
+            <p className="mx-auto mt-5 max-w-md text-sm leading-relaxed text-slate-300">
               Open to interesting projects, internships, collaborations, or just
               a good conversation about building things.
             </p>
@@ -939,17 +939,17 @@ function Contact() {
 
 function Footer() {
   return (
-    <footer className="border-t border-white/5 py-8">
+    <footer className="border-t border-white/10 py-8">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-5 sm:flex-row sm:px-8">
-        <span className="font-mono text-xs text-slate-700">
+        <span className="font-mono text-xs text-slate-400">
           giorgio.dettmar@gmx.de
         </span>
-        <p className="font-mono text-xs text-slate-700">
+        <p className="font-mono text-xs text-slate-400">
           © 2025 Giorgio Dettmar
         </p>
         <div className="flex items-center gap-1.5">
           <span className="dot-live" style={{ width: 5, height: 5 }} />
-          <span className="font-mono text-xs text-slate-700">
+          <span className="font-mono text-xs text-slate-400">
             all systems operational
           </span>
         </div>
@@ -962,7 +962,7 @@ function Footer() {
 
 export default function HomePage() {
   return (
-    <main className="noise-bg relative min-h-screen overflow-x-hidden bg-[#0d1117] text-white">
+    <main className="noise-bg relative min-h-screen overflow-x-hidden bg-[#0c1018] text-white">
       <Navbar />
       <Hero />
       <Marquee />
