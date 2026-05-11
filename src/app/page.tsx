@@ -13,7 +13,11 @@ const stagger: Variants = {
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
-  show:   { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+  },
 };
 
 // ── Data ───────────────────────────────────────────────────────────────────
@@ -29,7 +33,8 @@ const PROJECTS = [
     live: "https://crack-the-test.vercel.app",
     icon: "🧠",
     screenshot: "/screenshots/crackthetest3.png",
-    previewGradient: "linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%)",
+    previewGradient:
+      "linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%)",
     previewAccent: "#6366f1",
     badge: "AI · Live",
   },
@@ -43,7 +48,8 @@ const PROJECTS = [
     live: "https://gamer-connect-chi.vercel.app/",
     icon: "🎮",
     screenshot: "/screenshots/gamerconnect2.png",
-    previewGradient: "linear-gradient(135deg, #020617 0%, #0c1445 50%, #0e2a5e 100%)",
+    previewGradient:
+      "linear-gradient(135deg, #020617 0%, #0c1445 50%, #0e2a5e 100%)",
     previewAccent: "#22d3ee",
     badge: "Web · Live",
   },
@@ -57,7 +63,8 @@ const PROJECTS = [
     live: "https://go2-spot.vercel.app/",
     icon: "🗺️",
     screenshot: "/screenshots/go2spot2.png",
-    previewGradient: "linear-gradient(135deg, #080c04 0%, #0e1a08 50%, #142810 100%)",
+    previewGradient:
+      "linear-gradient(135deg, #080c04 0%, #0e1a08 50%, #142810 100%)",
     previewAccent: "#86efac",
     badge: "AI · Travel",
   },
@@ -71,7 +78,8 @@ const PROJECTS = [
     live: "https://picturasearch.vercel.app",
     icon: "🖼️",
     screenshot: "/screenshots/picturasearch.png",
-    previewGradient: "linear-gradient(135deg, #0a0010 0%, #1a0030 50%, #2d0050 100%)",
+    previewGradient:
+      "linear-gradient(135deg, #0a0010 0%, #1a0030 50%, #2d0050 100%)",
     previewAccent: "#c084fc",
     badge: "AI · CV · Live",
   },
@@ -81,11 +89,13 @@ const PROJECTS = [
     desc: "Describe a UI component → get production-ready TypeScript + Tailwind code instantly. GPT-4 powered.",
     tags: ["Next.js", "GPT-4", "Flask", "TypeScript", "OpenAI"],
     category: "AI",
-    github: "https://github.com/Giorgiod91/AI-React-Component-Designer-Frontend",
+    github:
+      "https://github.com/Giorgiod91/AI-React-Component-Designer-Frontend",
     live: "https://aicomponentgenerator-nine.vercel.app/",
     icon: "⚛️",
-    screenshot: "/screenshots/reactify.png",
-    previewGradient: "linear-gradient(135deg, #0a0f1e 0%, #0d2137 50%, #0a3d62 100%)",
+    screenshot: "/screenshots/reactify2.png",
+    previewGradient:
+      "linear-gradient(135deg, #0a0f1e 0%, #0d2137 50%, #0a3d62 100%)",
     previewAccent: "#38bdf8",
     badge: "AI · Live",
   },
@@ -99,7 +109,8 @@ const PROJECTS = [
     live: "https://praktikumsfinder.vercel.app/",
     icon: "🔍",
     screenshot: "/screenshots/praktikumsfinder2.png",
-    previewGradient: "linear-gradient(135deg, #0c0a00 0%, #1c1400 50%, #292000 100%)",
+    previewGradient:
+      "linear-gradient(135deg, #0c0a00 0%, #1c1400 50%, #292000 100%)",
     previewAccent: "#fbbf24",
     badge: "Web · Live",
   },
@@ -113,7 +124,8 @@ const PROJECTS = [
     live: "https://edu-progress.vercel.app/",
     icon: "📚",
     screenshot: "/screenshots/eduprogress.png",
-    previewGradient: "linear-gradient(135deg, #000d0a 0%, #001a12 50%, #00301f 100%)",
+    previewGradient:
+      "linear-gradient(135deg, #000d0a 0%, #001a12 50%, #00301f 100%)",
     previewAccent: "#34d399",
     badge: "Web · Live",
   },
@@ -127,30 +139,67 @@ const PROJECTS = [
     live: "",
     icon: "🛡️",
     screenshot: null as string | null,
-    previewGradient: "linear-gradient(135deg, #0c0004 0%, #1a000a 50%, #280010 100%)",
+    previewGradient:
+      "linear-gradient(135deg, #0c0004 0%, #1a000a 50%, #280010 100%)",
     previewAccent: "#fb7185",
     badge: "AI · Security",
   },
 ];
 
 const SKILLS = [
-  { cat: "Frontend",  items: ["Next.js", "React", "TypeScript", "Tailwind", "Framer Motion"] },
-  { cat: "Backend",   items: ["Python", "FastAPI", "Flask", "Node.js", "Laravel"] },
-  { cat: "AI",        items: ["OpenAI API", "LangChain", "TensorFlow", "CNN", "Claude"] },
-  { cat: "Database",  items: ["Supabase", "PostgreSQL", "MongoDB", "Prisma"] },
-  { cat: "Tools",     items: ["Git", "Vercel", "Docker", "Cursor", "v0"] },
+  {
+    cat: "Frontend",
+    items: ["Next.js", "React", "TypeScript", "Tailwind", "Framer Motion"],
+  },
+  {
+    cat: "Backend",
+    items: ["Python", "FastAPI", "Flask", "Node.js", "Laravel"],
+  },
+  {
+    cat: "AI",
+    items: ["OpenAI API", "LangChain", "TensorFlow", "CNN", "Claude"],
+  },
+  { cat: "Database", items: ["Supabase", "PostgreSQL", "MongoDB", "Prisma"] },
+  { cat: "Tools", items: ["Git", "Vercel", "Docker", "Cursor", "v0"] },
 ];
 
 const MARQUEE_ITEMS = [
-  "Next.js", "•", "TypeScript", "•", "Python", "•", "FastAPI", "•",
-  "OpenAI", "•", "Supabase", "•", "React", "•", "TailwindCSS", "•",
-  "Framer Motion", "•", "PostgreSQL", "•", "•", "Vercel", "•",
-  "LangChain", "•", "CNN", "•", "Claude API", "•", "Node.js", "•",
+  "Next.js",
+  "•",
+  "TypeScript",
+  "•",
+  "Python",
+  "•",
+  "FastAPI",
+  "•",
+  "OpenAI",
+  "•",
+  "Supabase",
+  "•",
+  "React",
+  "•",
+  "TailwindCSS",
+  "•",
+  "Framer Motion",
+  "•",
+  "PostgreSQL",
+  "•",
+  "•",
+  "Vercel",
+  "•",
+  "LangChain",
+  "•",
+  "CNN",
+  "•",
+  "Claude API",
+  "•",
+  "Node.js",
+  "•",
 ];
 
 // ── Project Preview (browser mockup) ──────────────────────────────────────
 
-function ProjectPreview({ project }: { project: typeof PROJECTS[0] }) {
+function ProjectPreview({ project }: { project: (typeof PROJECTS)[0] }) {
   const urlLabel = project.live
     ? project.live.replace("https://", "").replace(/\/$/, "")
     : `${project.title.toLowerCase().replace(/[^a-z]/g, "")}.app`;
@@ -180,7 +229,11 @@ function ProjectPreview({ project }: { project: typeof PROJECTS[0] }) {
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
           <span
             className="absolute right-2 top-2 rounded-md px-2 py-0.5 text-[9px] font-bold tracking-wider"
-            style={{ background: `${project.previewAccent}33`, color: project.previewAccent, border: `1px solid ${project.previewAccent}55` }}
+            style={{
+              background: `${project.previewAccent}33`,
+              color: project.previewAccent,
+              border: `1px solid ${project.previewAccent}55`,
+            }}
           >
             {project.badge}
           </span>
@@ -190,14 +243,23 @@ function ProjectPreview({ project }: { project: typeof PROJECTS[0] }) {
           className="relative flex h-28 items-center justify-center overflow-hidden"
           style={{ background: project.previewGradient }}
         >
-          <div className="absolute h-24 w-24 rounded-full blur-3xl opacity-40" style={{ background: project.previewAccent }} />
+          <div
+            className="absolute h-24 w-24 rounded-full blur-3xl opacity-40"
+            style={{ background: project.previewAccent }}
+          />
           <div className="relative z-10 text-center">
             <div className="mb-1.5 text-2xl">{project.icon}</div>
-            <p className="font-display text-[10px] tracking-widest text-white/80 uppercase">{project.title}</p>
+            <p className="font-display text-[10px] tracking-widest text-white/80 uppercase">
+              {project.title}
+            </p>
           </div>
           <span
             className="absolute right-2 top-2 rounded-md px-2 py-0.5 text-[9px] font-bold tracking-wider"
-            style={{ background: `${project.previewAccent}33`, color: project.previewAccent, border: `1px solid ${project.previewAccent}55` }}
+            style={{
+              background: `${project.previewAccent}33`,
+              color: project.previewAccent,
+              border: `1px solid ${project.previewAccent}55`,
+            }}
           >
             {project.badge}
           </span>
@@ -223,12 +285,18 @@ function Navbar() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
       className={`fixed left-0 right-0 top-0 z-50 transition-all duration-500 ${
-        scrolled ? "border-b border-white/6 bg-[#08080c]/90 backdrop-blur-xl" : ""
+        scrolled
+          ? "border-b border-white/6 bg-[#08080c]/90 backdrop-blur-xl"
+          : ""
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-8">
-        <a href="#" className="font-mono text-sm font-bold text-orange-400 transition-colors hover:text-orange-300">
-          gd<span className="cursor-blink" />
+        <a
+          href="#"
+          className="font-mono text-sm font-bold text-orange-400 transition-colors hover:text-orange-300"
+        >
+          gd
+          <span className="cursor-blink" />
         </a>
         <nav className="hidden items-center gap-8 md:flex">
           {["Work", "Stack", "About", "Contact"].map((item) => (
@@ -237,7 +305,12 @@ function Navbar() {
             </a>
           ))}
         </nav>
-        <a href="https://github.com/Giorgiod91" target="_blank" rel="noopener noreferrer" className="btn-primary py-2.5 text-xs">
+        <a
+          href="https://github.com/Giorgiod91"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-primary py-2.5 text-xs"
+        >
           GitHub →
         </a>
       </div>
@@ -248,13 +321,17 @@ function Navbar() {
 // ── Hero ───────────────────────────────────────────────────────────────────
 
 const CODE_LINES = [
-  { indent: 0, text: "const developer = {",        color: "#f1f5f9" },
+  { indent: 0, text: "const developer = {", color: "#f1f5f9" },
   { indent: 1, text: 'name:     "Giorgio Dettmar",', color: "#94a3b8" },
-  { indent: 1, text: 'location: "Germany 🇩🇪",',   color: "#94a3b8" },
-  { indent: 1, text: 'focus:    ["AI", "Next.js", "Python"],', color: "#94a3b8" },
-  { indent: 1, text: 'status:   "available",',       color: "#4ade80" },
-  { indent: 1, text: 'building: "20+ projects",',    color: "#94a3b8" },
-  { indent: 0, text: "};",                            color: "#f1f5f9" },
+  { indent: 1, text: 'location: "Germany 🇩🇪",', color: "#94a3b8" },
+  {
+    indent: 1,
+    text: 'focus:    ["AI", "Next.js", "Python"],',
+    color: "#94a3b8",
+  },
+  { indent: 1, text: 'status:   "available",', color: "#4ade80" },
+  { indent: 1, text: 'building: "20+ projects",', color: "#94a3b8" },
+  { indent: 0, text: "};", color: "#f1f5f9" },
 ];
 
 function CodeCard() {
@@ -277,7 +354,9 @@ function CodeCard() {
         <span className="terminal-dot bg-red-500/70" />
         <span className="terminal-dot bg-yellow-500/70" />
         <span className="terminal-dot bg-green-500/70" />
-        <span className="ml-3 font-mono text-[11px] text-slate-600">developer.ts</span>
+        <span className="ml-3 font-mono text-[11px] text-slate-600">
+          developer.ts
+        </span>
       </div>
 
       {/* Code body */}
@@ -288,15 +367,34 @@ function CodeCard() {
             key={i}
             className={`flex gap-4 transition-opacity duration-200 ${i < visible ? "opacity-100" : "opacity-0"}`}
           >
-            <span className="w-4 shrink-0 text-right text-slate-700 select-none">{i + 1}</span>
+            <span className="w-4 shrink-0 text-right text-slate-700 select-none">
+              {i + 1}
+            </span>
             <span style={{ color: line.color, paddingLeft: line.indent * 16 }}>
               {/* Highlight keywords */}
-              {line.text.split(/(["'][^"']*["']|true|false|\[.*?\])/g).map((part, j) => {
-                if (part.startsWith('"') || part.startsWith("'")) return <span key={j} style={{ color: "#fb923c" }}>{part}</span>;
-                if (part === "true" || part === "false") return <span key={j} style={{ color: "#4ade80" }}>{part}</span>;
-                if (part.startsWith("[")) return <span key={j} style={{ color: "#fbbf24" }}>{part}</span>;
-                return <span key={j}>{part}</span>;
-              })}
+              {line.text
+                .split(/(["'][^"']*["']|true|false|\[.*?\])/g)
+                .map((part, j) => {
+                  if (part.startsWith('"') || part.startsWith("'"))
+                    return (
+                      <span key={j} style={{ color: "#fb923c" }}>
+                        {part}
+                      </span>
+                    );
+                  if (part === "true" || part === "false")
+                    return (
+                      <span key={j} style={{ color: "#4ade80" }}>
+                        {part}
+                      </span>
+                    );
+                  if (part.startsWith("["))
+                    return (
+                      <span key={j} style={{ color: "#fbbf24" }}>
+                        {part}
+                      </span>
+                    );
+                  return <span key={j}>{part}</span>;
+                })}
             </span>
           </div>
         ))}
@@ -304,7 +402,9 @@ function CodeCard() {
         {/* Blinking cursor */}
         {visible >= CODE_LINES.length && (
           <div className="flex gap-4 mt-1">
-            <span className="w-4 text-right text-slate-700 select-none">{CODE_LINES.length + 1}</span>
+            <span className="w-4 text-right text-slate-700 select-none">
+              {CODE_LINES.length + 1}
+            </span>
             <span className="cursor-blink" />
           </div>
         )}
@@ -312,7 +412,11 @@ function CodeCard() {
 
       {/* Footer stats */}
       <div className="border-t border-white/6 grid grid-cols-3 divide-x divide-white/6">
-        {[["TypeScript", "✓"], ["Node 24", "✓"], ["Ready", "🟢"]].map(([label, val]) => (
+        {[
+          ["TypeScript", "✓"],
+          ["Node 24", "✓"],
+          ["Ready", "🟢"],
+        ].map(([label, val]) => (
           <div key={label} className="px-4 py-2.5">
             <p className="font-mono text-[9px] text-slate-600">{label}</p>
             <p className="font-mono text-xs text-slate-300">{val}</p>
@@ -335,9 +439,11 @@ function Hero() {
         {/* Extra center glow */}
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full bg-orange-500/5 blur-[140px]" />
         {/* Horizontal rule lines */}
-        <div className="absolute inset-0 opacity-[0.025]"
+        <div
+          className="absolute inset-0 opacity-[0.025]"
           style={{
-            backgroundImage: "repeating-linear-gradient(0deg, rgba(255,255,255,0.5) 0px, transparent 1px, transparent 64px)",
+            backgroundImage:
+              "repeating-linear-gradient(0deg, rgba(255,255,255,0.5) 0px, transparent 1px, transparent 64px)",
             backgroundSize: "100% 64px",
           }}
         />
@@ -345,7 +451,6 @@ function Hero() {
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pt-28 pb-16 sm:px-8">
         <div className="grid items-center gap-16 lg:grid-cols-[1.1fr_0.9fr]">
-
           {/* Left */}
           <div>
             <motion.div
@@ -375,8 +480,8 @@ function Hero() {
               transition={{ duration: 0.6, delay: 0.24 }}
               className="mt-5 max-w-md text-base leading-relaxed text-slate-400 sm:text-lg"
             >
-              Full-Stack Developer building AI-powered apps that solve real problems.
-              Next.js · Python · FastAPI · OpenAI.
+              Full-Stack Developer building AI-powered apps that solve real
+              problems. Next.js · Python · FastAPI · OpenAI.
             </motion.p>
 
             <motion.div
@@ -385,8 +490,12 @@ function Hero() {
               transition={{ duration: 0.5, delay: 0.36 }}
               className="mt-9 flex flex-wrap items-center gap-4"
             >
-              <a href="#work" className="btn-primary">See my Work →</a>
-              <a href="mailto:giorgio.dettmar@gmx.de" className="btn-secondary">Get in Touch</a>
+              <a href="#work" className="btn-primary">
+                See my Work →
+              </a>
+              <a href="mailto:giorgio.dettmar@gmx.de" className="btn-secondary">
+                Get in Touch
+              </a>
             </motion.div>
 
             {/* Mini stats */}
@@ -396,7 +505,11 @@ function Hero() {
               transition={{ delay: 0.55 }}
               className="mt-12 flex flex-wrap gap-8"
             >
-              {[["20+", "Projects"], ["AI", "Powered"], ["IHK + B.Sc.", "Education"]].map(([val, label]) => (
+              {[
+                ["20+", "Projects"],
+                ["AI", "Powered"],
+                ["IHK + B.Sc.", "Education"],
+              ].map(([val, label]) => (
                 <div key={label}>
                   <p className="font-display text-2xl text-white">{val}</p>
                   <p className="mt-0.5 text-xs text-slate-600">{label}</p>
@@ -416,7 +529,9 @@ function Hero() {
         animate={{ y: [0, 8, 0] }}
         transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
       >
-        <p className="font-mono text-[9px] tracking-[0.3em] text-slate-700 uppercase">scroll</p>
+        <p className="font-mono text-[9px] tracking-[0.3em] text-slate-700 uppercase">
+          scroll
+        </p>
         <div className="h-8 w-px bg-gradient-to-b from-slate-700 to-transparent" />
       </motion.div>
     </section>
@@ -450,7 +565,8 @@ function Marquee() {
 function Projects() {
   const [filter, setFilter] = useState<"All" | "AI" | "Web">("All");
   const tabs = ["All", "AI", "Web"] as const;
-  const filtered = filter === "All" ? PROJECTS : PROJECTS.filter((p) => p.category === filter);
+  const filtered =
+    filter === "All" ? PROJECTS : PROJECTS.filter((p) => p.category === filter);
 
   return (
     <section id="work" className="py-28">
@@ -464,12 +580,17 @@ function Projects() {
         >
           <div className="relative">
             <span className="section-num">01</span>
-            <motion.p variants={fadeUp} className="mb-2 font-mono text-[11px] tracking-[0.2em] text-orange-400 uppercase">
+            <motion.p
+              variants={fadeUp}
+              className="mb-2 font-mono text-[11px] tracking-[0.2em] text-orange-400 uppercase"
+            >
               Selected Work
             </motion.p>
-            <motion.h2 variants={fadeUp} className="font-display text-3xl text-white sm:text-4xl">
-              Projects that{" "}
-              <span className="text-gradient">ship.</span>
+            <motion.h2
+              variants={fadeUp}
+              className="font-display text-3xl text-white sm:text-4xl"
+            >
+              Projects that <span className="text-gradient">ship.</span>
             </motion.h2>
           </div>
           <motion.div variants={fadeUp} className="flex gap-2">
@@ -489,7 +610,10 @@ function Projects() {
           </motion.div>
         </motion.div>
 
-        <motion.div layout className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <motion.div
+          layout
+          className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+        >
           <AnimatePresence mode="popLayout">
             {filtered.map((project) => (
               <motion.div
@@ -505,15 +629,24 @@ function Projects() {
                 <ProjectPreview project={project} />
 
                 {/* Number */}
-                <p className="mb-2 font-mono text-[10px] text-slate-700">{project.num}</p>
+                <p className="mb-2 font-mono text-[10px] text-slate-700">
+                  {project.num}
+                </p>
 
-                <h3 className="font-display mb-2 text-sm tracking-wider text-white">{project.title}</h3>
-                <p className="mb-5 flex-1 text-sm leading-relaxed text-slate-400">{project.desc}</p>
+                <h3 className="font-display mb-2 text-sm tracking-wider text-white">
+                  {project.title}
+                </h3>
+                <p className="mb-5 flex-1 text-sm leading-relaxed text-slate-400">
+                  {project.desc}
+                </p>
 
                 {/* Tags */}
                 <div className="mb-5 flex flex-wrap gap-1.5">
                   {project.tags.map((tag) => (
-                    <span key={tag} className="rounded-md border border-white/8 bg-white/4 px-2 py-0.5 font-mono text-[10px] text-slate-500">
+                    <span
+                      key={tag}
+                      className="rounded-md border border-white/8 bg-white/4 px-2 py-0.5 font-mono text-[10px] text-slate-500"
+                    >
                       {tag}
                     </span>
                   ))}
@@ -521,18 +654,40 @@ function Projects() {
 
                 {/* Links */}
                 <div className="flex items-center gap-4 border-t border-white/5 pt-4">
-                  <a href={project.github} target="_blank" rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 font-mono text-xs text-slate-600 transition-colors hover:text-white">
-                    <svg viewBox="0 0 24 24" fill="currentColor" className="h-3.5 w-3.5">
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 font-mono text-xs text-slate-600 transition-colors hover:text-white"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      className="h-3.5 w-3.5"
+                    >
                       <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2Z" />
                     </svg>
                     Code
                   </a>
                   {project.live && (
-                    <a href={project.live} target="_blank" rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 font-mono text-xs text-slate-600 transition-colors hover:text-orange-400">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="h-3.5 w-3.5">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 font-mono text-xs text-slate-600 transition-colors hover:text-orange-400"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                        className="h-3.5 w-3.5"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                        />
                       </svg>
                       Live
                     </a>
@@ -565,10 +720,16 @@ function Stack() {
         >
           <div className="relative">
             <span className="section-num">02</span>
-            <motion.p variants={fadeUp} className="mb-2 font-mono text-[11px] tracking-[0.2em] text-orange-400 uppercase">
+            <motion.p
+              variants={fadeUp}
+              className="mb-2 font-mono text-[11px] tracking-[0.2em] text-orange-400 uppercase"
+            >
               Tech Stack
             </motion.p>
-            <motion.h2 variants={fadeUp} className="font-display text-3xl text-white sm:text-4xl">
+            <motion.h2
+              variants={fadeUp}
+              className="font-display text-3xl text-white sm:text-4xl"
+            >
               Tools I build with.
             </motion.h2>
           </div>
@@ -583,10 +744,14 @@ function Stack() {
         >
           {SKILLS.map(({ cat, items }) => (
             <motion.div key={cat} variants={fadeUp} className="space-y-3">
-              <p className="font-mono text-[10px] tracking-[0.15em] text-orange-500/70 uppercase">{cat}</p>
+              <p className="font-mono text-[10px] tracking-[0.15em] text-orange-500/70 uppercase">
+                {cat}
+              </p>
               <div className="flex flex-wrap gap-2">
                 {items.map((item) => (
-                  <span key={item} className="skill-badge">{item}</span>
+                  <span key={item} className="skill-badge">
+                    {item}
+                  </span>
                 ))}
               </div>
             </motion.div>
@@ -604,7 +769,6 @@ function About() {
     <section id="about" className="border-t border-white/5 py-28">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="grid items-start gap-16 lg:grid-cols-2">
-
           <motion.div
             variants={stagger}
             initial="hidden"
@@ -613,30 +777,52 @@ function About() {
           >
             <div className="relative">
               <span className="section-num">03</span>
-              <motion.p variants={fadeUp} className="mb-2 font-mono text-[11px] tracking-[0.2em] text-orange-400 uppercase">
+              <motion.p
+                variants={fadeUp}
+                className="mb-2 font-mono text-[11px] tracking-[0.2em] text-orange-400 uppercase"
+              >
                 About
               </motion.p>
-              <motion.h2 variants={fadeUp} className="font-display mb-6 text-3xl text-white sm:text-4xl">
+              <motion.h2
+                variants={fadeUp}
+                className="font-display mb-6 text-3xl text-white sm:text-4xl"
+              >
                 Building things that{" "}
                 <span className="text-gradient">matter.</span>
               </motion.h2>
             </div>
-            <motion.div variants={fadeUp} className="space-y-4 text-sm leading-relaxed text-slate-400">
+            <motion.div
+              variants={fadeUp}
+              className="space-y-4 text-sm leading-relaxed text-slate-400"
+            >
               <p>
-                I&apos;m a Full-Stack Developer from Germany, simultaneously pursuing an IHK certification in application development (until 2027) and a B.Sc. in Computer Science.
+                I&apos;m a Full-Stack Developer from Germany, simultaneously
+                pursuing an IHK certification in application development (until
+                2027) and a B.Sc. in Computer Science.
               </p>
               <p>
-                I&apos;m obsessed with AI-powered applications — combining Next.js frontends with Python/FastAPI backends and LLM APIs to build tools that genuinely solve problems.
+                I&apos;m obsessed with AI-powered applications — combining
+                Next.js frontends with Python/FastAPI backends and LLM APIs to
+                build tools that genuinely solve problems.
               </p>
               <p>
-                I work with Claude, Cursor, and v0 daily. I believe in shipping fast, iterating relentlessly, and learning from every deployment.
+                I work with Claude, Cursor, and v0 daily. I believe in shipping
+                fast, iterating relentlessly, and learning from every
+                deployment.
               </p>
             </motion.div>
             <motion.div variants={fadeUp} className="mt-8 flex flex-wrap gap-4">
-              <a href="https://github.com/Giorgiod91" target="_blank" rel="noopener noreferrer" className="btn-primary text-sm">
+              <a
+                href="https://github.com/Giorgiod91"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary text-sm"
+              >
                 GitHub →
               </a>
-              <a href="#contact" className="btn-secondary text-sm">Contact</a>
+              <a href="#contact" className="btn-secondary text-sm">
+                Contact
+              </a>
             </motion.div>
           </motion.div>
 
@@ -649,9 +835,24 @@ function About() {
             className="space-y-3"
           >
             {[
-            { year: "2025 → 2027", title: "IHK — Application Developer", desc: "Fachinformatiker Anwendungsentwicklung", dot: "#f97316" },
-{ year: "2025 → 2028", title: "B.Sc. Computer Science", desc: "Online university, parallel to training", dot: "#fbbf24" },
-{ year: "2022 → now", title: "Self-taught · Open Source", desc: "20+ projects shipped, always learning", dot: "#818cf8" },
+              {
+                year: "2025 → 2027",
+                title: "IHK — Application Developer",
+                desc: "Fachinformatiker Anwendungsentwicklung",
+                dot: "#f97316",
+              },
+              {
+                year: "2025 → 2028",
+                title: "B.Sc. Computer Science",
+                desc: "Online university, parallel to training",
+                dot: "#fbbf24",
+              },
+              {
+                year: "2022 → now",
+                title: "Self-taught · Open Source",
+                desc: "20+ projects shipped, always learning",
+                dot: "#818cf8",
+              },
             ].map((item, i) => (
               <motion.div
                 key={i}
@@ -661,10 +862,17 @@ function About() {
                 transition={{ delay: i * 0.1, duration: 0.5 }}
                 className="flex gap-4 rounded-xl border border-white/6 bg-white/2 p-4 transition-colors hover:border-orange-500/20 hover:bg-orange-500/3"
               >
-                <div className="mt-1.5 h-2 w-2 shrink-0 rounded-full" style={{ background: item.dot }} />
+                <div
+                  className="mt-1.5 h-2 w-2 shrink-0 rounded-full"
+                  style={{ background: item.dot }}
+                />
                 <div>
-                  <p className="mb-0.5 font-mono text-[10px] text-slate-600">{item.year}</p>
-                  <p className="text-sm font-semibold text-white">{item.title}</p>
+                  <p className="mb-0.5 font-mono text-[10px] text-slate-600">
+                    {item.year}
+                  </p>
+                  <p className="text-sm font-semibold text-white">
+                    {item.title}
+                  </p>
                   <p className="text-xs text-slate-600">{item.desc}</p>
                 </div>
               </motion.div>
@@ -698,17 +906,25 @@ function Contact() {
               04 · Let&apos;s Build Together
             </p>
             <h2 className="font-display text-4xl text-white sm:text-5xl">
-              Got a project{" "}
-              <span className="text-gradient">in mind?</span>
+              Got a project <span className="text-gradient">in mind?</span>
             </h2>
             <p className="mx-auto mt-5 max-w-md text-sm leading-relaxed text-slate-400">
-              Open to interesting projects, internships, collaborations, or just a good conversation about building things.
+              Open to interesting projects, internships, collaborations, or just
+              a good conversation about building things.
             </p>
             <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
-              <a href="mailto:giorgio.dettmar@gmx.de" className="btn-primary px-8 py-4 text-base">
+              <a
+                href="mailto:giorgio.dettmar@gmx.de"
+                className="btn-primary px-8 py-4 text-base"
+              >
                 Send Email →
               </a>
-              <a href="https://github.com/Giorgiod91" target="_blank" rel="noopener noreferrer" className="btn-secondary px-8 py-4 text-base">
+              <a
+                href="https://github.com/Giorgiod91"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary px-8 py-4 text-base"
+              >
                 GitHub Profile
               </a>
             </div>
@@ -725,11 +941,17 @@ function Footer() {
   return (
     <footer className="border-t border-white/5 py-8">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-5 sm:flex-row sm:px-8">
-        <span className="font-mono text-xs text-slate-700">giorgio.dettmar@gmx.de</span>
-        <p className="font-mono text-xs text-slate-700">© 2025 Giorgio Dettmar</p>
+        <span className="font-mono text-xs text-slate-700">
+          giorgio.dettmar@gmx.de
+        </span>
+        <p className="font-mono text-xs text-slate-700">
+          © 2025 Giorgio Dettmar
+        </p>
         <div className="flex items-center gap-1.5">
           <span className="dot-live" style={{ width: 5, height: 5 }} />
-          <span className="font-mono text-xs text-slate-700">all systems operational</span>
+          <span className="font-mono text-xs text-slate-700">
+            all systems operational
+          </span>
         </div>
       </div>
     </footer>
