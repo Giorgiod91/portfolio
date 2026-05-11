@@ -144,7 +144,7 @@ const SKILLS = [
 const MARQUEE_ITEMS = [
   "Next.js", "•", "TypeScript", "•", "Python", "•", "FastAPI", "•",
   "OpenAI", "•", "Supabase", "•", "React", "•", "TailwindCSS", "•",
-  "Framer Motion", "•", "PostgreSQL", "•", "Docker", "•", "Vercel", "•",
+  "Framer Motion", "•", "PostgreSQL", "•", "•", "Vercel", "•",
   "LangChain", "•", "CNN", "•", "Claude API", "•", "Node.js", "•",
 ];
 
@@ -394,7 +394,7 @@ function Hero() {
               transition={{ delay: 0.55 }}
               className="mt-12 flex flex-wrap gap-8"
             >
-              {[["20+", "Projects"], ["3y", "Experience"], ["IHK + B.Sc.", "Education"]].map(([val, label]) => (
+              {[["20+", "Projects"], ["AI", "Powered"], ["IHK + B.Sc.", "Education"]].map(([val, label]) => (
                 <div key={label}>
                   <p className="font-display text-2xl text-white">{val}</p>
                   <p className="mt-0.5 text-xs text-slate-600">{label}</p>
@@ -647,10 +647,9 @@ function About() {
             className="space-y-3"
           >
             {[
-              { year: "2024 → 2027", title: "IHK — Application Developer", desc: "Fachinformatiker Anwendungsentwicklung", dot: "#f97316" },
-              { year: "2024 → now",  title: "B.Sc. Computer Science",       desc: "Online university, parallel to training",      dot: "#fbbf24" },
-              { year: "2023 → now",  title: "Freelance Full-Stack Dev",     desc: "AI integrations, SaaS, web apps",              dot: "#34d399" },
-              { year: "2022 → now",  title: "Self-taught · Open Source",    desc: "20+ projects shipped, always learning",        dot: "#818cf8" },
+            { year: "2025 → 2027", title: "IHK — Application Developer", desc: "Fachinformatiker Anwendungsentwicklung", dot: "#f97316" },
+{ year: "2025 → 2028", title: "B.Sc. Computer Science", desc: "Online university, parallel to training", dot: "#fbbf24" },
+{ year: "2022 → now", title: "Self-taught · Open Source", desc: "20+ projects shipped, always learning", dot: "#818cf8" },
             ].map((item, i) => (
               <motion.div
                 key={i}
