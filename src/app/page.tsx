@@ -28,7 +28,7 @@ const PROJECTS = [
     github: "https://github.com/Giorgiod91/CrackTheTest",
     live: "https://crack-the-test.vercel.app",
     icon: "🧠",
-    screenshot: "/screenshots/crackthetest.png",
+    screenshot: "/screenshots/crackthetest2.png",
     previewGradient: "linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%)",
     previewAccent: "#6366f1",
     badge: "AI · Live",
