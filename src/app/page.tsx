@@ -49,6 +49,20 @@ const PROJECTS = [
   },
   {
     num: "03",
+    title: "Go2Spot",
+    desc: "Travel discovery app — finds attractions & hidden gems in any city. Personalized via Python ML backend.",
+    tags: ["TypeScript", "Next.js", "Python", "ML", "Maps API"],
+    category: "AI",
+    github: "https://github.com/Giorgiod91/-Go2Spot",
+    live: "https://go2-spot.vercel.app/",
+    icon: "🗺️",
+    screenshot: "/screenshots/go2spot.png",
+    previewGradient: "linear-gradient(135deg, #080c04 0%, #0e1a08 50%, #142810 100%)",
+    previewAccent: "#86efac",
+    badge: "AI · Travel",
+  },
+  {
+    num: "04",
     title: "PicturaSearch",
     desc: "Upload a photo → CNN model finds matching products on eBay. Visual search, no text queries needed.",
     tags: ["TypeScript", "Python", "CNN", "eBay API", "ML"],
@@ -62,7 +76,7 @@ const PROJECTS = [
     badge: "AI · CV · Live",
   },
   {
-    num: "04",
+    num: "05",
     title: "Reactify",
     desc: "Describe a UI component → get production-ready TypeScript + Tailwind code instantly. GPT-4 powered.",
     tags: ["Next.js", "GPT-4", "Flask", "TypeScript", "OpenAI"],
@@ -76,7 +90,7 @@ const PROJECTS = [
     badge: "AI · Live",
   },
   {
-    num: "05",
+    num: "06",
     title: "PraktikumsFinder",
     desc: "Connects career-changers with IHK-certified companies. Smart location filters & automated verification.",
     tags: ["Python", "FastAPI", "Next.js", "PostgreSQL"],
@@ -90,7 +104,7 @@ const PROJECTS = [
     badge: "Web · Live",
   },
   {
-    num: "06",
+    num: "07",
     title: "EduProgress",
     desc: "Study tracker with visual dashboards, streaks & AI insights. Track goals and learning velocity.",
     tags: ["Next.js", "TypeScript", "Supabase", "Tailwind"],
@@ -102,20 +116,6 @@ const PROJECTS = [
     previewGradient: "linear-gradient(135deg, #000d0a 0%, #001a12 50%, #00301f 100%)",
     previewAccent: "#34d399",
     badge: "Web · Live",
-  },
-  {
-    num: "07",
-    title: "Go2Spot",
-    desc: "Travel discovery app — finds attractions & hidden gems in any city. Personalized via Python ML backend.",
-    tags: ["TypeScript", "Next.js", "Python", "ML", "Maps API"],
-    category: "AI",
-    github: "https://github.com/Giorgiod91/-Go2Spot",
-    live: "https://go2-spot.vercel.app/",
-    icon: "🗺️",
-    screenshot: "/screenshots/go2spot.png",
-    previewGradient: "linear-gradient(135deg, #080c04 0%, #0e1a08 50%, #142810 100%)",
-    previewAccent: "#86efac",
-    badge: "AI · Travel",
   },
   {
     num: "08",
@@ -329,9 +329,11 @@ function Hero() {
       {/* Background */}
       <div className="pointer-events-none absolute inset-0" aria-hidden>
         {/* Warm orange glow — bottom right */}
-        <div className="absolute -bottom-40 -right-40 h-[600px] w-[600px] rounded-full bg-orange-600/8 blur-[120px]" />
+        <div className="absolute -bottom-40 -right-40 h-[600px] w-[600px] rounded-full bg-orange-600/15 blur-[120px]" />
         {/* Subtle amber — top left */}
-        <div className="absolute -left-32 -top-32 h-[400px] w-[400px] rounded-full bg-amber-500/6 blur-[100px]" />
+        <div className="absolute -left-32 -top-32 h-[400px] w-[400px] rounded-full bg-amber-500/10 blur-[100px]" />
+        {/* Extra center glow */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full bg-orange-500/5 blur-[140px]" />
         {/* Horizontal rule lines */}
         <div className="absolute inset-0 opacity-[0.025]"
           style={{
@@ -426,13 +428,13 @@ function Hero() {
 function Marquee() {
   const items = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS];
   return (
-    <div className="border-y border-white/5 bg-white/[0.015] py-4 overflow-hidden">
+    <div className="border-y border-white/8 bg-white/[0.03] py-4 overflow-hidden">
       <div className="marquee-track">
         {items.map((item, i) => (
           <span
             key={i}
             className={`px-4 font-mono text-xs whitespace-nowrap ${
-              item === "•" ? "text-orange-500/50" : "text-slate-600"
+              item === "•" ? "text-orange-400/70" : "text-slate-500"
             }`}
           >
             {item}
