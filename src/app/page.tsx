@@ -91,7 +91,7 @@ const PROJECTS = [
     category: "AI",
     github:
       "https://github.com/Giorgiod91/AI-React-Component-Designer-Frontend",
-    live: "https://aicomponentgenerator-nine.vercel.app/",
+    live: "https://ai-react-component-designer-fronten.vercel.app/",
     icon: "⚛️",
     screenshot: "/screenshots/reactify2.png",
     previewGradient:
