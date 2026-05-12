@@ -47,7 +47,7 @@ const PROJECTS = [
     github: "https://github.com/Giorgiod91/GamerConnect",
     live: "https://gamer-connect-chi.vercel.app/",
     icon: "🎮",
-    screenshot: "/screenshots/gamerconnect2.png",
+    screenshot: "/screenshots/GamersCONN.png",
     previewGradient:
       "linear-gradient(135deg, #020617 0%, #0c1445 50%, #0e2a5e 100%)",
     previewAccent: "#22d3ee",
