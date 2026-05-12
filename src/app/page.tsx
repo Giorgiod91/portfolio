@@ -123,7 +123,7 @@ const PROJECTS = [
     github: "https://github.com/Giorgiod91/EduProgress",
     live: "https://edu-progress.vercel.app/",
     icon: "📚",
-    screenshot: "/screenshots/eduprogress.png",
+    screenshot: "/screenshots/eduprogr.png",
     previewGradient:
       "linear-gradient(135deg, #000d0a 0%, #001a12 50%, #00301f 100%)",
     previewAccent: "#34d399",
