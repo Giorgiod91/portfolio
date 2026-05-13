@@ -160,7 +160,7 @@ const SKILLS = [
     items: ["OpenAI API", "LangChain", "TensorFlow", "CNN", "Claude"],
   },
   { cat: "Database", items: ["Supabase", "PostgreSQL", "MongoDB", "Prisma"] },
-  { cat: "Tools", items: ["Git", "Vercel", "Docker", "Cursor", "v0"] },
+  { cat: "Tools", items: ["Git", "Vercel", "Docker", "Cursor", "v0", "Railway"] },
 ];
 
 const MARQUEE_ITEMS = [
@@ -480,7 +480,7 @@ function Hero() {
               transition={{ duration: 0.6, delay: 0.24 }}
               className="mt-5 max-w-md text-base leading-relaxed text-slate-300 sm:text-lg"
             >
-              Full-Stack Developer building AI-powered apps that solve real
+              Junior Full-Stack Developer building AI-powered apps that solve real
               problems. Next.js · Python · FastAPI · OpenAI.
             </motion.p>
 
