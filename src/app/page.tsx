@@ -480,8 +480,8 @@ function Hero() {
               transition={{ duration: 0.6, delay: 0.24 }}
               className="mt-5 max-w-md text-base leading-relaxed text-slate-300 sm:text-lg"
             >
-              Junior Full-Stack Developer building AI-powered apps that solve real
-              problems. Next.js · Python · FastAPI · OpenAI.
+          Software Engineer in Training building backend-leaning SaaS systems with a focus on scalable architecture, APIs, and AI integrations.
+Next.js · Python · FastAPI · PostgreSQL
             </motion.p>
 
             <motion.div
