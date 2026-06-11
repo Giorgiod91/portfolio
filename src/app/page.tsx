@@ -796,19 +796,18 @@ function About() {
               className="space-y-4 text-sm leading-relaxed text-slate-300"
             >
               <p>
-                I&apos;m a Full-Stack Developer from Germany, simultaneously
-                pursuing an IHK certification in application development (until
-                2027) and a B.Sc. in Computer Science.
+               I am currently studying Computer Science (B.Sc.) while completing vocational
+  training in software development, and I actively build production-style
+  projects using Next.js and Python (FastAPI).
               </p>
               <p>
-                I&apos;m obsessed with AI-powered applications — combining
-                Next.js frontends with Python/FastAPI backends and LLM APIs to
-                build tools that genuinely solve problems.
+                My current focus is FlowDesk — a multi-tenant SaaS platform for managing
+  teams, tasks, and workflows with a strong emphasis on system design,
+  authentication, and API-driven architecture.
               </p>
               <p>
-                I work with Claude, Cursor, and v0 daily. I believe in shipping
-                fast, iterating relentlessly, and learning from every
-                deployment.
+              I believe in building real systems, not just features — focusing on
+  scalability, clean architecture, and production-ready engineering practices.
               </p>
             </motion.div>
             <motion.div variants={fadeUp} className="mt-8 flex flex-wrap gap-4">
