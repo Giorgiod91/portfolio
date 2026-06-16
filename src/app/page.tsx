@@ -1,10 +1,10 @@
 "use client";
 
-import { motion, AnimatePresence, type Variants } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
-// ── Variants ───────────────────────────────────────────────────────────────
+// ── Motion ───────────────────────────────────────────────────────────────
 
 const stagger: Variants = {
   hidden: {},
@@ -12,7 +12,7 @@ const stagger: Variants = {
 };
 
 const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 18 },
   show: {
     opacity: 1,
     y: 0,
@@ -20,129 +20,23 @@ const fadeUp: Variants = {
   },
 };
 
-// ── Data ───────────────────────────────────────────────────────────────────
+// ── Data ─────────────────────────────────────────────────────────────────
 
-const PROJECTS = [
+const WHAT_I_DO = [
   {
     num: "01",
-    title: "CrackTheTest.ai",
-    desc: "AI test generator with Stripe payments, Supabase auth & FastAPI backend. Upload notes → get a full exam.",
-    tags: ["Next.js", "FastAPI", "OpenAI", "Supabase", "Stripe"],
-    category: "AI",
-    github: "https://github.com/Giorgiod91/CrackTheTest",
-    live: "https://crack-the-test.vercel.app",
-    icon: "🧠",
-    screenshot: "/screenshots/crackthetest3.png",
-    previewGradient:
-      "linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%)",
-    previewAccent: "#6366f1",
-    badge: "AI · Live",
+    title: "AI products, end-to-end",
+    desc: "From idea to shipped product — Next.js frontends, Python/FastAPI backends and LLM APIs (Claude, OpenAI) wired into things people actually use.",
   },
   {
     num: "02",
-    title: "GamerConnect",
-    desc: "Real-time gaming platform with AI teammate matching, Supabase live chat & tournament hub. T3 stack.",
-    tags: ["Next.js", "Supabase", "TypeScript", "Framer Motion"],
-    category: "Web",
-    github: "https://github.com/Giorgiod91/GamerConnect",
-    live: "https://gamer-connect-chi.vercel.app/",
-    icon: "🎮",
-    screenshot: "/screenshots/GamersCONN.png",
-    previewGradient:
-      "linear-gradient(135deg, #020617 0%, #0c1445 50%, #0e2a5e 100%)",
-    previewAccent: "#22d3ee",
-    badge: "Web · Live",
+    title: "Agentic AI & automation",
+    desc: "Claude-powered agents with tool use, multi-step loops and real-world actions. I know when to trust the output — and when not to.",
   },
   {
     num: "03",
-    title: "Go2Spot",
-    desc: "Travel discovery app — finds attractions & hidden gems in any city. Personalized via Python ML backend.",
-    tags: ["TypeScript", "Next.js", "Python", "ML", "Maps API"],
-    category: "AI",
-    github: "https://github.com/Giorgiod91/-Go2Spot",
-    live: "https://go2-spot.vercel.app/",
-    icon: "🗺️",
-    screenshot: "/screenshots/go2spot2.png",
-    previewGradient:
-      "linear-gradient(135deg, #080c04 0%, #0e1a08 50%, #142810 100%)",
-    previewAccent: "#86efac",
-    badge: "AI · Travel",
-  },
-  {
-    num: "04",
-    title: "PicturaSearch",
-    desc: "Upload a photo → CNN model finds matching products on eBay. Visual search, no text queries needed.",
-    tags: ["TypeScript", "Python", "CNN", "eBay API", "ML"],
-    category: "AI",
-    github: "https://github.com/Giorgiod91/picturaSearch",
-    live: "https://picturasearch.vercel.app",
-    icon: "🖼️",
-    screenshot: "/screenshots/picturasearch.png",
-    previewGradient:
-      "linear-gradient(135deg, #0a0010 0%, #1a0030 50%, #2d0050 100%)",
-    previewAccent: "#c084fc",
-    badge: "AI · CV · Live",
-  },
-  {
-    num: "05",
-    title: "Reactify",
-    desc: "Describe a UI component → get production-ready TypeScript + Tailwind code instantly. GPT-4 powered.",
-    tags: ["Next.js", "GPT-4", "Flask", "TypeScript", "OpenAI"],
-    category: "AI",
-    github:
-      "https://github.com/Giorgiod91/AI-React-Component-Designer-Frontend",
-    live: "https://ai-react-component-designer-fronten.vercel.app/",
-    icon: "⚛️",
-    screenshot: "/screenshots/reactify2.png",
-    previewGradient:
-      "linear-gradient(135deg, #0a0f1e 0%, #0d2137 50%, #0a3d62 100%)",
-    previewAccent: "#38bdf8",
-    badge: "AI · Live",
-  },
-  {
-    num: "06",
-    title: "PraktikumsFinder",
-    desc: "Connects career-changers with IHK-certified companies. Smart location filters & automated verification.",
-    tags: ["Python", "FastAPI", "Next.js", "PostgreSQL"],
-    category: "Web",
-    github: "https://github.com/Giorgiod91/PraktikumFinder",
-    live: "https://praktikumsfinder.vercel.app/",
-    icon: "🔍",
-    screenshot: "/screenshots/praktikumsfinder2.png",
-    previewGradient:
-      "linear-gradient(135deg, #0c0a00 0%, #1c1400 50%, #292000 100%)",
-    previewAccent: "#fbbf24",
-    badge: "Web · Live",
-  },
-  {
-    num: "07",
-    title: "EduProgress",
-    desc: "Study tracker with visual dashboards, streaks & AI insights. Track goals and learning velocity.",
-    tags: ["Next.js", "TypeScript", "Supabase", "Tailwind"],
-    category: "Web",
-    github: "https://github.com/Giorgiod91/EduProgress",
-    live: "https://edu-progress.vercel.app/",
-    icon: "📚",
-    screenshot: "/screenshots/eduprogr.png",
-    previewGradient:
-      "linear-gradient(135deg, #000d0a 0%, #001a12 50%, #00301f 100%)",
-    previewAccent: "#34d399",
-    badge: "Web · Live",
-  },
-  {
-    num: "08",
-    title: "AntiCheat AI",
-    desc: "Anti-cheat system with TypeScript frontend & Python ML backend that detects suspicious behaviour in real time.",
-    tags: ["TypeScript", "Python", "AI", "Next.js", "ML"],
-    category: "AI",
-    github: "https://github.com/Giorgiod91/AntiCheatAIFrontend",
-    live: "",
-    icon: "🛡️",
-    screenshot: null as string | null,
-    previewGradient:
-      "linear-gradient(135deg, #0c0004 0%, #1a000a 50%, #280010 100%)",
-    previewAccent: "#fb7185",
-    badge: "AI · Security",
+    title: "Full-stack web apps",
+    desc: "Auth, payments, realtime, databases. Stripe subscriptions, Supabase + RLS, PostgreSQL — production-ready, not demo-ware.",
   },
 ];
 
@@ -151,120 +45,106 @@ const SKILLS = [
     cat: "Frontend",
     items: ["Next.js", "React", "TypeScript", "Tailwind", "Framer Motion"],
   },
-  {
-    cat: "Backend",
-    items: ["Python", "FastAPI", "Flask", "Node.js", "Laravel"],
-  },
-  {
-    cat: "AI",
-    items: ["OpenAI API", "LangChain", "TensorFlow", "CNN", "Claude"],
-  },
+  { cat: "Backend", items: ["Python", "FastAPI", "Flask", "Node.js", "Laravel"] },
+  { cat: "AI", items: ["Claude API", "OpenAI API", "LangChain", "TensorFlow", "CNN"] },
   { cat: "Database", items: ["Supabase", "PostgreSQL", "MongoDB", "Prisma"] },
   { cat: "Tools", items: ["Git", "Vercel", "Docker", "Cursor", "v0"] },
 ];
 
-const MARQUEE_ITEMS = [
-  "Next.js",
-  "•",
-  "TypeScript",
-  "•",
-  "Python",
-  "•",
-  "FastAPI",
-  "•",
-  "OpenAI",
-  "•",
-  "Supabase",
-  "•",
-  "React",
-  "•",
-  "TailwindCSS",
-  "•",
-  "Framer Motion",
-  "•",
-  "PostgreSQL",
-  "•",
-  "•",
-  "Vercel",
-  "•",
-  "LangChain",
-  "•",
-  "CNN",
-  "•",
-  "Claude API",
-  "•",
-  "Node.js",
-  "•",
+const PROJECTS = [
+  {
+    title: "CrackTheTest.ai",
+    desc: "Full SaaS, built from scratch — upload lecture notes, get an AI-generated exam in seconds. Stripe subscriptions, Supabase Auth + RLS, FastAPI, Claude API.",
+    tags: ["Next.js", "FastAPI", "Claude API", "Supabase", "Stripe"],
+    category: "AI",
+    github: "https://github.com/Giorgiod91/CrackTheTest",
+    live: "https://crack-the-test.vercel.app",
+    screenshot: "/screenshots/crackthetest3.png",
+  },
+  {
+    title: "GamerConnect",
+    desc: "Real-time gaming platform — Supabase live chat, AI teammate matching and tournament management. Zero latency on every live feature.",
+    tags: ["Next.js", "Supabase", "TypeScript", "Framer Motion"],
+    category: "Web",
+    github: "https://github.com/Giorgiod91/GamerConnect",
+    live: "https://gamer-connect-chi.vercel.app/",
+    screenshot: "/screenshots/GamersCONN.png",
+  },
+  {
+    title: "Go2Spot",
+    desc: "Travel discovery app that finds hidden gems in any city. Python ML backend personalizes results, Next.js frontend, Maps API.",
+    tags: ["TypeScript", "Next.js", "Python", "ML"],
+    category: "AI",
+    github: "https://github.com/Giorgiod91/-Go2Spot",
+    live: "https://go2-spot.vercel.app/",
+    screenshot: "/screenshots/go2spot2.png",
+  },
+  {
+    title: "PicturaSearch",
+    desc: "Upload any photo — a CNN (TensorFlow) classifies it and finds matching products on eBay. Full-stack: TypeScript + Python ML. No text queries needed.",
+    tags: ["TypeScript", "Python", "CNN", "eBay API"],
+    category: "AI",
+    github: "https://github.com/Giorgiod91/picturaSearch",
+    live: "https://picturasearch.vercel.app",
+    screenshot: "/screenshots/picturasearch.png",
+  },
+  {
+    title: "Reactify",
+    desc: "Describe a UI component in plain text → get production-ready TypeScript + Tailwind instantly. Next.js, Flask, GPT-4. Cuts boilerplate to zero.",
+    tags: ["Next.js", "GPT-4", "Flask", "OpenAI"],
+    category: "AI",
+    github: "https://github.com/Giorgiod91/AI-React-Component-Designer-Frontend",
+    live: "https://ai-react-component-designer-fronten.vercel.app/",
+    screenshot: "/screenshots/reactify2.png",
+  },
+  {
+    title: "PraktikumsFinder",
+    desc: "Matches aspiring developers with IHK-certified training companies. FastAPI backend, smart location filtering, PostgreSQL, automated verification.",
+    tags: ["Python", "FastAPI", "Next.js", "PostgreSQL"],
+    category: "Web",
+    github: "https://github.com/Giorgiod91/PraktikumFinder",
+    live: "https://praktikumsfinder.vercel.app/",
+    screenshot: "/screenshots/praktikumsfinder2.png",
+  },
+  {
+    title: "EduProgress",
+    desc: "Study progress tracker with visual dashboards, streaks and AI learning insights. Supabase + Row Level Security, realtime sync, TypeScript throughout.",
+    tags: ["Next.js", "TypeScript", "Supabase", "Tailwind"],
+    category: "Web",
+    github: "https://github.com/Giorgiod91/EduProgress",
+    live: "https://edu-progress.vercel.app/",
+    screenshot: "/screenshots/eduprogr.png",
+  },
+  {
+    title: "AntiCheat AI",
+    desc: "Real-time anti-cheat — a Python ML model detects suspicious gameplay behaviour, the TypeScript frontend visualizes flags live. Behavioral-AI proof of concept.",
+    tags: ["TypeScript", "Python", "ML", "Next.js"],
+    category: "AI",
+    github: "https://github.com/Giorgiod91/AntiCheatAIFrontend",
+    live: "",
+    screenshot: null as string | null,
+  },
 ];
 
-// ── Project Preview (browser mockup) ──────────────────────────────────────
+const MARQUEE = [
+  "Next.js", "TypeScript", "Python", "FastAPI", "Claude API", "Supabase",
+  "React", "Tailwind", "PostgreSQL", "OpenAI", "LangChain", "Stripe",
+  "Framer Motion", "Vercel", "Docker", "Prisma",
+];
 
-function ProjectPreview({ project }: { project: (typeof PROJECTS)[0] }) {
-  const urlLabel = project.live
-    ? project.live.replace("https://", "").replace(/\/$/, "")
-    : `${project.title.toLowerCase().replace(/[^a-z]/g, "")}.app`;
+// ── Pulsing rings motif ────────────────────────────────────────────────────
 
+function PulseRings({ size = 320 }: { size?: number }) {
   return (
-    <div className="mb-5 overflow-hidden rounded-xl border border-white/8">
-      {/* Browser chrome */}
-      <div className="flex items-center gap-1.5 border-b border-white/6 bg-white/4 px-3 py-2.5">
-        <span className="h-2.5 w-2.5 rounded-full bg-red-500/70" />
-        <span className="h-2.5 w-2.5 rounded-full bg-yellow-500/70" />
-        <span className="h-2.5 w-2.5 rounded-full bg-green-500/70" />
-        <div className="mx-2 flex-1 rounded bg-white/6 px-2 py-0.5 text-center font-mono text-[9px] text-slate-600">
-          {urlLabel}
-        </div>
-      </div>
-
-      {/* Preview area — real screenshot OR styled gradient */}
-      {project.screenshot ? (
-        <div className="relative h-28 overflow-hidden">
-          <Image
-            src={project.screenshot}
-            alt={`${project.title} preview`}
-            fill
-            className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-          <span
-            className="absolute right-2 top-2 rounded-md px-2 py-0.5 text-[9px] font-bold tracking-wider"
-            style={{
-              background: `${project.previewAccent}33`,
-              color: project.previewAccent,
-              border: `1px solid ${project.previewAccent}55`,
-            }}
-          >
-            {project.badge}
-          </span>
-        </div>
-      ) : (
-        <div
-          className="relative flex h-28 items-center justify-center overflow-hidden"
-          style={{ background: project.previewGradient }}
-        >
-          <div
-            className="absolute h-24 w-24 rounded-full blur-3xl opacity-40"
-            style={{ background: project.previewAccent }}
-          />
-          <div className="relative z-10 text-center">
-            <div className="mb-1.5 text-2xl">{project.icon}</div>
-            <p className="font-display text-[10px] tracking-widest text-white/80 uppercase">
-              {project.title}
-            </p>
-          </div>
-          <span
-            className="absolute right-2 top-2 rounded-md px-2 py-0.5 text-[9px] font-bold tracking-wider"
-            style={{
-              background: `${project.previewAccent}33`,
-              color: project.previewAccent,
-              border: `1px solid ${project.previewAccent}55`,
-            }}
-          >
-            {project.badge}
-          </span>
-        </div>
-      )}
+    <div className="ring-stage" style={{ width: size, height: size }} aria-hidden>
+      {[0, 1, 2, 3].map((i) => (
+        <span
+          key={i}
+          className="ring"
+          style={{ animationDelay: `${i * 1.05}s` }}
+        />
+      ))}
+      <span className="core" style={{ width: size * 0.07, height: size * 0.07 }} />
     </div>
   );
 }
@@ -274,266 +154,105 @@ function ProjectPreview({ project }: { project: (typeof PROJECTS)[0] }) {
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 50);
+    const fn = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", fn);
     return () => window.removeEventListener("scroll", fn);
   }, []);
 
   return (
-    <motion.header
-      initial={{ opacity: 0, y: -16 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className={`fixed left-0 right-0 top-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "border-b border-white/6 bg-[#08080c]/90 backdrop-blur-xl"
-          : ""
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+        scrolled ? "border-b border-[rgba(20,18,16,0.1)] bg-[#e9e3d4]/80 backdrop-blur-md" : ""
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-8">
-        <a
-          href="#"
-          className="font-mono text-sm font-bold text-orange-400 transition-colors hover:text-orange-300"
-        >
-          gd
-          <span className="cursor-blink" />
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5 sm:px-8">
+        <a href="#" className="font-mono text-sm font-medium tracking-tight">
+          giorgio<span className="text-[#a39a89]">.dev</span>
         </a>
         <nav className="hidden items-center gap-8 md:flex">
-          {["Work", "Stack", "About", "Contact"].map((item) => (
+          {["Work", "About", "Contact"].map((item) => (
             <a key={item} href={`#${item.toLowerCase()}`} className="nav-link">
               {item}
             </a>
           ))}
         </nav>
-        <a
-          href="https://github.com/Giorgiod91"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn-primary py-2.5 text-xs"
-        >
-          GitHub →
+        <a href="mailto:giorgio.dettmar@gmx.de" className="btn-secondary text-sm">
+          Get in touch
         </a>
       </div>
-    </motion.header>
+    </header>
   );
 }
 
 // ── Hero ───────────────────────────────────────────────────────────────────
 
-const CODE_LINES = [
-  { indent: 0, text: "const developer = {", color: "#f1f5f9" },
-  { indent: 1, text: 'name:     "Giorgio Dettmar",', color: "#94a3b8" },
-  { indent: 1, text: 'location: "Germany 🇩🇪",', color: "#94a3b8" },
-  {
-    indent: 1,
-    text: 'focus:    ["AI", "Next.js", "Python"],',
-    color: "#94a3b8",
-  },
-  { indent: 1, text: 'status:   "available",', color: "#4ade80" },
-  { indent: 1, text: 'building: "20+ projects",', color: "#94a3b8" },
-  { indent: 0, text: "};", color: "#f1f5f9" },
-];
-
-function CodeCard() {
-  const [visible, setVisible] = useState(0);
-  useEffect(() => {
-    if (visible >= CODE_LINES.length) return;
-    const t = setTimeout(() => setVisible((v) => v + 1), 160);
-    return () => clearTimeout(t);
-  }, [visible]);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30, scale: 0.96 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ delay: 0.4, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      className="terminal-card w-full max-w-lg mx-auto"
-    >
-      {/* Header */}
-      <div className="terminal-header">
-        <span className="terminal-dot bg-red-500/70" />
-        <span className="terminal-dot bg-yellow-500/70" />
-        <span className="terminal-dot bg-green-500/70" />
-        <span className="ml-3 font-mono text-[11px] text-slate-600">
-          developer.ts
-        </span>
-      </div>
-
-      {/* Code body */}
-      <div className="p-5 font-mono text-[13px] leading-relaxed">
-        {/* Line numbers + code */}
-        {CODE_LINES.map((line, i) => (
-          <div
-            key={i}
-            className={`flex gap-4 transition-opacity duration-200 ${i < visible ? "opacity-100" : "opacity-0"}`}
-          >
-            <span className="w-4 shrink-0 text-right text-slate-700 select-none">
-              {i + 1}
-            </span>
-            <span style={{ color: line.color, paddingLeft: line.indent * 16 }}>
-              {/* Highlight keywords */}
-              {line.text
-                .split(/(["'][^"']*["']|true|false|\[.*?\])/g)
-                .map((part, j) => {
-                  if (part.startsWith('"') || part.startsWith("'"))
-                    return (
-                      <span key={j} style={{ color: "#fb923c" }}>
-                        {part}
-                      </span>
-                    );
-                  if (part === "true" || part === "false")
-                    return (
-                      <span key={j} style={{ color: "#4ade80" }}>
-                        {part}
-                      </span>
-                    );
-                  if (part.startsWith("["))
-                    return (
-                      <span key={j} style={{ color: "#fbbf24" }}>
-                        {part}
-                      </span>
-                    );
-                  return <span key={j}>{part}</span>;
-                })}
-            </span>
-          </div>
-        ))}
-
-        {/* Blinking cursor */}
-        {visible >= CODE_LINES.length && (
-          <div className="flex gap-4 mt-1">
-            <span className="w-4 text-right text-slate-700 select-none">
-              {CODE_LINES.length + 1}
-            </span>
-            <span className="cursor-blink" />
-          </div>
-        )}
-      </div>
-
-      {/* Footer stats */}
-      <div className="border-t border-white/6 grid grid-cols-3 divide-x divide-white/6">
-        {[
-          ["TypeScript", "✓"],
-          ["Node 24", "✓"],
-          ["Ready", "🟢"],
-        ].map(([label, val]) => (
-          <div key={label} className="px-4 py-2.5">
-            <p className="font-mono text-[9px] text-slate-600">{label}</p>
-            <p className="font-mono text-xs text-slate-300">{val}</p>
-          </div>
-        ))}
-      </div>
-    </motion.div>
-  );
-}
-
 function Hero() {
   return (
-    <section className="relative flex min-h-screen items-center overflow-hidden">
-      {/* Background */}
-      <div className="pointer-events-none absolute inset-0" aria-hidden>
-        {/* Warm orange glow — bottom right */}
-        <div className="absolute -bottom-40 -right-40 h-[600px] w-[600px] rounded-full bg-orange-600/15 blur-[120px]" />
-        {/* Subtle amber — top left */}
-        <div className="absolute -left-32 -top-32 h-[400px] w-[400px] rounded-full bg-amber-500/10 blur-[100px]" />
-        {/* Extra center glow */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full bg-orange-500/5 blur-[140px]" />
-        {/* Horizontal rule lines */}
-        <div
-          className="absolute inset-0 opacity-[0.025]"
-          style={{
-            backgroundImage:
-              "repeating-linear-gradient(0deg, rgba(255,255,255,0.5) 0px, transparent 1px, transparent 64px)",
-            backgroundSize: "100% 64px",
-          }}
-        />
+    <section className="relative overflow-hidden px-6 pt-36 pb-24 sm:px-8 sm:pt-44">
+      <div className="mx-auto grid max-w-6xl items-center gap-16 lg:grid-cols-[1.15fr_0.85fr]">
+        <motion.div variants={stagger} initial="hidden" animate="show">
+          <motion.div
+            variants={fadeUp}
+            className="mb-7 inline-flex items-center gap-2.5 rounded-full border border-[rgba(20,18,16,0.18)] px-3.5 py-1.5"
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#1a1714] opacity-60" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-[#1a1714]" />
+            </span>
+            <span className="eyebrow">Open to work · Germany</span>
+          </motion.div>
+
+          <motion.h1
+            variants={fadeUp}
+            className="font-display text-[clamp(2.8rem,7vw,5rem)] font-semibold leading-[0.98] tracking-[-0.03em]"
+          >
+            Giorgio
+            <br />
+            Dettmar
+          </motion.h1>
+
+          <motion.p
+            variants={fadeUp}
+            className="mt-6 max-w-md text-lg leading-relaxed text-[#4a443b]"
+          >
+            Full-stack developer building{" "}
+            <span className="text-[#1a1714]">AI-powered products</span> that solve
+            real problems. Next.js · Python · FastAPI · Claude API.
+          </motion.p>
+
+          <motion.div variants={fadeUp} className="mt-9 flex flex-wrap items-center gap-3">
+            <a href="#work" className="btn-primary">
+              See my work
+            </a>
+            <a href="#contact" className="btn-secondary">
+              Let&apos;s talk
+            </a>
+          </motion.div>
+
+          <motion.div variants={fadeUp} className="mt-14 flex flex-wrap gap-x-12 gap-y-6">
+            {[
+              ["20+", "Projects shipped"],
+              ["Agentic AI", "Tool-use workflows"],
+              ["IHK + B.Sc.", "In progress"],
+            ].map(([val, label]) => (
+              <div key={label}>
+                <p className="text-2xl font-semibold tracking-tight">{val}</p>
+                <p className="eyebrow mt-1">{label}</p>
+              </div>
+            ))}
+          </motion.div>
+        </motion.div>
+
+        {/* Rings */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          className="flex justify-center lg:justify-end"
+        >
+          <PulseRings size={360} />
+        </motion.div>
       </div>
-
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pt-28 pb-16 sm:px-8">
-        <div className="grid items-center gap-16 lg:grid-cols-[1.1fr_0.9fr]">
-          {/* Left */}
-          <div>
-            <motion.div
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-orange-400/20 bg-orange-400/6 px-4 py-2 text-xs tracking-[0.2em] text-orange-300 uppercase"
-            >
-              <span className="dot-live" />
-              Open to work · Germany
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.75, delay: 0.1 }}
-              className="font-display text-[clamp(3rem,8vw,5.5rem)] leading-[1.02] tracking-tight"
-            >
-              Giorgio
-              <br />
-              <span className="text-gradient">Dettmar.</span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.24 }}
-              className="mt-5 max-w-md text-base leading-relaxed text-slate-300 sm:text-lg"
-            >
-              Full-Stack Developer building AI-powered apps that solve real
-              problems. Next.js · Python · FastAPI · OpenAI.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.36 }}
-              className="mt-9 flex flex-wrap items-center gap-4"
-            >
-              <a href="#work" className="btn-primary">
-                See my Work →
-              </a>
-              <a href="mailto:giorgio.dettmar@gmx.de" className="btn-secondary">
-                Get in Touch
-              </a>
-            </motion.div>
-
-            {/* Mini stats */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.55 }}
-              className="mt-12 flex flex-wrap gap-8"
-            >
-              {[
-                ["20+", "Projects"],
-                ["AI", "Powered"],
-                ["IHK + B.Sc.", "Education"],
-              ].map(([val, label]) => (
-                <div key={label}>
-                  <p className="font-display text-2xl text-white">{val}</p>
-                  <p className="mt-0.5 text-xs text-slate-400">{label}</p>
-                </div>
-              ))}
-            </motion.div>
-          </div>
-
-          {/* Right — code card */}
-          <CodeCard />
-        </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5"
-        animate={{ y: [0, 8, 0] }}
-        transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-      >
-        <p className="font-mono text-[9px] tracking-[0.3em] text-slate-500 uppercase">
-          scroll
-        </p>
-        <div className="h-8 w-px bg-gradient-to-b from-slate-500 to-transparent" />
-      </motion.div>
     </section>
   );
 }
@@ -541,18 +260,14 @@ function Hero() {
 // ── Marquee ────────────────────────────────────────────────────────────────
 
 function Marquee() {
-  const items = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS];
+  const items = [...MARQUEE, ...MARQUEE];
   return (
-    <div className="border-y border-white/8 bg-white/[0.03] py-4 overflow-hidden">
+    <div className="overflow-hidden border-y border-[rgba(20,18,16,0.1)] py-4">
       <div className="marquee-track">
         {items.map((item, i) => (
-          <span
-            key={i}
-            className={`px-4 font-mono text-xs whitespace-nowrap ${
-              item === "•" ? "text-orange-400/70" : "text-slate-500"
-            }`}
-          >
-            {item}
+          <span key={i} className="flex items-center">
+            <span className="font-mono text-sm text-[#6c655a]">{item}</span>
+            <span className="mx-6 h-1 w-1 rounded-full bg-[#a39a89]" />
           </span>
         ))}
       </div>
@@ -560,196 +275,107 @@ function Marquee() {
   );
 }
 
-// ── Projects ───────────────────────────────────────────────────────────────
+// ── Section heading ──────────────────────────────────────────────────────────
 
-function Projects() {
-  const [filter, setFilter] = useState<"All" | "AI" | "Web">("All");
-  const tabs = ["All", "AI", "Web"] as const;
-  const filtered =
-    filter === "All" ? PROJECTS : PROJECTS.filter((p) => p.category === filter);
-
+function SectionHead({
+  index,
+  label,
+  title,
+}: {
+  index: string;
+  label: string;
+  title: React.ReactNode;
+}) {
   return (
-    <section id="work" className="py-28">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+    <motion.div
+      variants={stagger}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.4 }}
+      className="mb-14"
+    >
+      <motion.div variants={fadeUp} className="mb-4 flex items-center gap-3">
+        <span className="font-mono text-sm text-[#a39a89]">{index}</span>
+        <span className="h-px w-8 bg-[rgba(20,18,16,0.25)]" />
+        <span className="eyebrow">{label}</span>
+      </motion.div>
+      <motion.h2
+        variants={fadeUp}
+        className="font-display max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl"
+      >
+        {title}
+      </motion.h2>
+    </motion.div>
+  );
+}
+
+// ── What I do ───────────────────────────────────────────────────────────────
+
+function WhatIDo() {
+  return (
+    <section className="px-6 py-28 sm:px-8">
+      <div className="mx-auto max-w-6xl">
+        <SectionHead
+          index="01"
+          label="What I do"
+          title="I build the whole thing — frontend, backend, and the AI in between."
+        />
         <motion.div
           variants={stagger}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
-          className="mb-14 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between"
+          className="grid gap-px overflow-hidden rounded-2xl border border-[rgba(20,18,16,0.12)] bg-[rgba(20,18,16,0.1)] sm:grid-cols-3"
         >
-          <div className="relative">
-            <span className="section-num">01</span>
-            <motion.p
+          {WHAT_I_DO.map((item) => (
+            <motion.div
+              key={item.num}
               variants={fadeUp}
-              className="mb-2 font-mono text-[11px] tracking-[0.2em] text-orange-400 uppercase"
+              className="bg-[#e9e3d4] p-8 transition-colors hover:bg-[#f2eee3]"
             >
-              Selected Work
-            </motion.p>
-            <motion.h2
-              variants={fadeUp}
-              className="font-display text-3xl text-white sm:text-4xl"
-            >
-              Projects that <span className="text-gradient">ship.</span>
-            </motion.h2>
-          </div>
-          <motion.div variants={fadeUp} className="flex gap-2">
-            {tabs.map((t) => (
-              <button
-                key={t}
-                onClick={() => setFilter(t)}
-                className={`rounded-lg px-4 py-1.5 font-mono text-xs tracking-wider uppercase transition-all ${
-                  filter === t
-                    ? "bg-orange-500/15 text-orange-300 border border-orange-500/30"
-                    : "border border-white/15 text-slate-400 hover:text-slate-200 hover:border-white/25"
-                }`}
-              >
-                {t}
-              </button>
-            ))}
-          </motion.div>
-        </motion.div>
-
-        <motion.div
-          layout
-          className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
-        >
-          <AnimatePresence mode="popLayout">
-            {filtered.map((project) => (
-              <motion.div
-                key={project.title}
-                layout
-                initial={{ opacity: 0, y: 20, scale: 0.97 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                className="project-card group flex flex-col"
-              >
-                {/* Preview image */}
-                <ProjectPreview project={project} />
-
-                {/* Number */}
-                <p className="mb-2 font-mono text-[10px] text-slate-500">
-                  {project.num}
-                </p>
-
-                <h3 className="font-display mb-2 text-sm tracking-wider text-white">
-                  {project.title}
-                </h3>
-                <p className="mb-5 flex-1 text-sm leading-relaxed text-slate-300">
-                  {project.desc}
-                </p>
-
-                {/* Tags */}
-                <div className="mb-5 flex flex-wrap gap-1.5">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-md border border-white/15 bg-white/6 px-2 py-0.5 font-mono text-[10px] text-slate-400"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Links */}
-                <div className="flex items-center gap-4 border-t border-white/10 pt-4">
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 font-mono text-xs text-slate-400 transition-colors hover:text-white"
-                  >
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      className="h-3.5 w-3.5"
-                    >
-                      <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2Z" />
-                    </svg>
-                    Code
-                  </a>
-                  {project.live && (
-                    <a
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 font-mono text-xs text-slate-400 transition-colors hover:text-orange-400"
-                    >
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                        className="h-3.5 w-3.5"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
-                        />
-                      </svg>
-                      Live
-                    </a>
-                  )}
-                  <span className="ml-auto font-mono text-[10px] text-orange-500/0 transition-all group-hover:text-orange-500/70">
-                    view →
-                  </span>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
+              <p className="font-mono text-sm text-[#a39a89]">{item.num}</p>
+              <h3 className="mt-6 text-lg font-semibold tracking-tight">
+                {item.title}
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-[#6c655a]">
+                {item.desc}
+              </p>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>
   );
 }
 
-// ── Stack ──────────────────────────────────────────────────────────────────
+// ── Skills ──────────────────────────────────────────────────────────────────
 
-function Stack() {
+function Skills() {
   return (
-    <section id="stack" className="border-t border-white/10 py-28">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+    <section className="px-6 py-28 sm:px-8">
+      <div className="mx-auto max-w-6xl">
+        <SectionHead
+          index="02"
+          label="What I can"
+          title="The tools I reach for."
+        />
         <motion.div
           variants={stagger}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
-          className="mb-14"
-        >
-          <div className="relative">
-            <span className="section-num">02</span>
-            <motion.p
-              variants={fadeUp}
-              className="mb-2 font-mono text-[11px] tracking-[0.2em] text-orange-400 uppercase"
-            >
-              Tech Stack
-            </motion.p>
-            <motion.h2
-              variants={fadeUp}
-              className="font-display text-3xl text-white sm:text-4xl"
-            >
-              Tools I build with.
-            </motion.h2>
-          </div>
-        </motion.div>
-
-        <motion.div
-          variants={stagger}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.1 }}
-          className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5"
+          viewport={{ once: true, amount: 0.15 }}
+          className="divide-y divide-[rgba(20,18,16,0.12)] border-y border-[rgba(20,18,16,0.12)]"
         >
           {SKILLS.map(({ cat, items }) => (
-            <motion.div key={cat} variants={fadeUp} className="space-y-3">
-              <p className="font-mono text-[10px] tracking-[0.15em] text-orange-500/70 uppercase">
-                {cat}
-              </p>
+            <motion.div
+              key={cat}
+              variants={fadeUp}
+              className="grid gap-4 py-6 sm:grid-cols-[160px_1fr] sm:items-center"
+            >
+              <p className="eyebrow">{cat}</p>
               <div className="flex flex-wrap gap-2">
                 {items.map((item) => (
-                  <span key={item} className="skill-badge">
+                  <span key={item} className="tag">
                     {item}
                   </span>
                 ))}
@@ -762,212 +388,271 @@ function Stack() {
   );
 }
 
-// ── About ──────────────────────────────────────────────────────────────────
+// ── Work ─────────────────────────────────────────────────────────────────────
 
-function About() {
+function ProjectCard({ project }: { project: (typeof PROJECTS)[0] }) {
+  const urlLabel = project.live
+    ? project.live.replace("https://", "").replace(/\/$/, "")
+    : `${project.title.toLowerCase().replace(/[^a-z]/g, "")}.app`;
+
   return (
-    <section id="about" className="border-t border-white/10 py-28">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="grid items-start gap-16 lg:grid-cols-2">
-          <motion.div
-            variants={stagger}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            <div className="relative">
-              <span className="section-num">03</span>
-              <motion.p
-                variants={fadeUp}
-                className="mb-2 font-mono text-[11px] tracking-[0.2em] text-orange-400 uppercase"
-              >
-                About
-              </motion.p>
-              <motion.h2
-                variants={fadeUp}
-                className="font-display mb-6 text-3xl text-white sm:text-4xl"
-              >
-                Building things that{" "}
-                <span className="text-gradient">matter.</span>
-              </motion.h2>
-            </div>
-            <motion.div
-              variants={fadeUp}
-              className="space-y-4 text-sm leading-relaxed text-slate-300"
-            >
-              <p>
-                I&apos;m a Full-Stack Developer from Germany, simultaneously
-                pursuing an IHK certification in application development (until
-                2027) and a B.Sc. in Computer Science.
-              </p>
-              <p>
-                I&apos;m obsessed with AI-powered applications — combining
-                Next.js frontends with Python/FastAPI backends and LLM APIs to
-                build tools that genuinely solve problems.
-              </p>
-              <p>
-                I work with Claude, Cursor, and v0 daily. I believe in shipping
-                fast, iterating relentlessly, and learning from every
-                deployment.
-              </p>
-            </motion.div>
-            <motion.div variants={fadeUp} className="mt-8 flex flex-wrap gap-4">
-              <a
-                href="https://github.com/Giorgiod91"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary text-sm"
-              >
-                GitHub →
-              </a>
-              <a href="#contact" className="btn-secondary text-sm">
-                Contact
-              </a>
-            </motion.div>
-          </motion.div>
+    <motion.div variants={fadeUp} className="card group flex flex-col overflow-hidden">
+      {/* Preview */}
+      <div className="overflow-hidden rounded-t-[1.25rem] border-b border-[rgba(20,18,16,0.1)]">
+        <div className="flex items-center gap-1.5 border-b border-[rgba(20,18,16,0.08)] bg-[rgba(20,18,16,0.03)] px-3 py-2">
+          <span className="h-2 w-2 rounded-full border border-[rgba(20,18,16,0.25)]" />
+          <span className="h-2 w-2 rounded-full border border-[rgba(20,18,16,0.25)]" />
+          <span className="h-2 w-2 rounded-full border border-[rgba(20,18,16,0.25)]" />
+          <span className="mx-auto truncate font-mono text-[10px] text-[#a39a89]">
+            {urlLabel}
+          </span>
+        </div>
+        {project.screenshot ? (
+          <div className="relative h-40 overflow-hidden bg-[#dcd5c4]">
+            <Image
+              src={project.screenshot}
+              alt={`${project.title} preview`}
+              fill
+              className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            />
+          </div>
+        ) : (
+          <div className="flex h-40 items-center justify-center bg-[#dcd5c4]">
+            <PulseRings size={120} />
+          </div>
+        )}
+      </div>
 
-          {/* Timeline */}
-          <motion.div
-            initial={{ opacity: 0, x: 24 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="space-y-3"
+      {/* Body */}
+      <div className="flex flex-1 flex-col p-6">
+        <div className="mb-3 flex items-center justify-between">
+          <h3 className="text-base font-semibold tracking-tight">{project.title}</h3>
+          <span className="eyebrow">{project.category}</span>
+        </div>
+        <p className="mb-5 flex-1 text-sm leading-relaxed text-[#6c655a]">
+          {project.desc}
+        </p>
+        <div className="mb-5 flex flex-wrap gap-1.5">
+          {project.tags.map((tag) => (
+            <span key={tag} className="tag">
+              {tag}
+            </span>
+          ))}
+        </div>
+        <div className="flex items-center gap-5 border-t border-[rgba(20,18,16,0.1)] pt-4">
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-mono text-xs text-[#6c655a] transition-colors hover:text-[#1a1714]"
           >
-            {[
-              {
-                year: "2025 → 2027",
-                title: "IHK — Application Developer",
-                desc: "Fachinformatiker Anwendungsentwicklung",
-                dot: "#f97316",
-              },
-              {
-                year: "2025 → 2028",
-                title: "B.Sc. Computer Science",
-                desc: "Online university, parallel to training",
-                dot: "#fbbf24",
-              },
-              {
-                year: "2022 → now",
-                title: "Self-taught · Open Source",
-                desc: "20+ projects shipped, always learning",
-                dot: "#818cf8",
-              },
-            ].map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: 16 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.5 }}
-                className="flex gap-4 rounded-xl border border-white/12 bg-white/5 p-4 transition-colors hover:border-orange-500/30 hover:bg-orange-500/6"
-              >
-                <div
-                  className="mt-1.5 h-2 w-2 shrink-0 rounded-full"
-                  style={{ background: item.dot }}
-                />
-                <div>
-                  <p className="mb-0.5 font-mono text-[10px] text-slate-400">
-                    {item.year}
-                  </p>
-                  <p className="text-sm font-semibold text-white">
-                    {item.title}
-                  </p>
-                  <p className="text-xs text-slate-400">{item.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
+            Code →
+          </a>
+          {project.live && (
+            <a
+              href={project.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-xs text-[#6c655a] transition-colors hover:text-[#1a1714]"
+            >
+              Live ↗
+            </a>
+          )}
         </div>
       </div>
-    </section>
+    </motion.div>
   );
 }
 
-// ── Contact ────────────────────────────────────────────────────────────────
+function Work() {
+  const [filter, setFilter] = useState<"All" | "AI" | "Web">("All");
+  const tabs = ["All", "AI", "Web"] as const;
+  const filtered =
+    filter === "All" ? PROJECTS : PROJECTS.filter((p) => p.category === filter);
 
-function Contact() {
   return (
-    <section id="contact" className="border-t border-white/10 py-28">
-      <div className="mx-auto max-w-5xl px-5 sm:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="relative overflow-hidden rounded-2xl border border-orange-500/15 bg-gradient-to-br from-orange-500/5 via-transparent to-amber-500/5 p-12 text-center"
-        >
-          {/* Corner glow */}
-          <div className="pointer-events-none absolute -bottom-20 -right-20 h-60 w-60 rounded-full bg-orange-600/12 blur-3xl" />
-          <div className="pointer-events-none absolute -left-20 -top-20 h-48 w-48 rounded-full bg-amber-500/8 blur-3xl" />
-
-          <div className="relative">
-            <p className="mb-3 font-mono text-[11px] tracking-[0.2em] text-orange-400 uppercase">
-              04 · Let&apos;s Build Together
-            </p>
-            <h2 className="font-display text-4xl text-white sm:text-5xl">
-              Got a project <span className="text-gradient">in mind?</span>
-            </h2>
-            <p className="mx-auto mt-5 max-w-md text-sm leading-relaxed text-slate-300">
-              Open to interesting projects, internships, collaborations, or just
-              a good conversation about building things.
-            </p>
-            <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
-              <a
-                href="mailto:giorgio.dettmar@gmx.de"
-                className="btn-primary px-8 py-4 text-base"
+    <section id="work" className="px-6 py-28 sm:px-8">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-14 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <SectionHead
+            index="03"
+            label="Selected work"
+            title="Things I've shipped."
+          />
+          <div className="flex gap-2">
+            {tabs.map((t) => (
+              <button
+                key={t}
+                onClick={() => setFilter(t)}
+                className={`rounded-full px-4 py-1.5 font-mono text-xs transition-all ${
+                  filter === t
+                    ? "bg-[#1a1714] text-[#f2eee3]"
+                    : "border border-[rgba(20,18,16,0.2)] text-[#6c655a] hover:border-[#1a1714] hover:text-[#1a1714]"
+                }`}
               >
-                Send Email →
-              </a>
-              <a
-                href="https://github.com/Giorgiod91"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-secondary px-8 py-4 text-base"
-              >
-                GitHub Profile
-              </a>
-            </div>
+                {t}
+              </button>
+            ))}
           </div>
+        </div>
+
+        <motion.div
+          key={filter}
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.05 }}
+          className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+        >
+          {filtered.map((project) => (
+            <ProjectCard key={project.title} project={project} />
+          ))}
         </motion.div>
       </div>
     </section>
   );
 }
 
-// ── Footer ─────────────────────────────────────────────────────────────────
+// ── About ─────────────────────────────────────────────────────────────────────
+
+function About() {
+  return (
+    <section id="about" className="px-6 py-28 sm:px-8">
+      <div className="mx-auto grid max-w-6xl gap-16 lg:grid-cols-2">
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <SectionHead index="04" label="About" title="Where I'm coming from." />
+          <motion.div
+            variants={fadeUp}
+            className="space-y-4 text-base leading-relaxed text-[#4a443b]"
+          >
+            <p>
+              I&apos;m a full-stack developer from Hannover, Germany —
+              simultaneously doing an IHK apprenticeship in application
+              development and a B.Sc. in Computer Science.
+            </p>
+            <p>
+              I build AI products end-to-end and care about the boring parts that
+              make software real: auth, payments, data, deployment. Self-taught
+              since 2022, 20+ projects shipped, always learning.
+            </p>
+          </motion.div>
+        </motion.div>
+
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={stagger}
+          className="lg:pt-2"
+        >
+          {[
+            { year: "2025 → 2027", title: "IHK — Application Developer", desc: "Fachinformatiker Anwendungsentwicklung" },
+            { year: "2025 → 2028", title: "B.Sc. Computer Science", desc: "Online, parallel to the apprenticeship" },
+            { year: "2022 → now", title: "Self-taught · Open source", desc: "20+ projects shipped, always shipping" },
+          ].map((item) => (
+            <motion.div
+              key={item.title}
+              variants={fadeUp}
+              className="flex gap-5 border-t border-[rgba(20,18,16,0.12)] py-6"
+            >
+              <p className="w-28 shrink-0 font-mono text-xs text-[#a39a89]">
+                {item.year}
+              </p>
+              <div>
+                <p className="font-semibold tracking-tight">{item.title}</p>
+                <p className="mt-1 text-sm text-[#6c655a]">{item.desc}</p>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+// ── Contact ───────────────────────────────────────────────────────────────────
+
+function Contact() {
+  return (
+    <section id="contact" className="px-6 py-32 sm:px-8">
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        className="relative mx-auto max-w-3xl overflow-hidden text-center"
+      >
+        <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 -translate-x-1/2 -translate-y-1/2">
+          <PulseRings size={480} />
+        </div>
+        <p className="eyebrow mb-5">05 · Let&apos;s build</p>
+        <h2 className="font-display text-4xl font-semibold tracking-tight sm:text-5xl">
+          Got something in mind?
+        </h2>
+        <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-[#6c655a]">
+          Open to freelance work, internships, collaborations — or just a good
+          conversation about building things.
+        </p>
+        <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
+          <a href="mailto:giorgio.dettmar@gmx.de" className="btn-primary">
+            Send an email
+          </a>
+          <a
+            href="https://www.linkedin.com/in/giorgio-dettmar-4838b7250"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-secondary"
+          >
+            LinkedIn
+          </a>
+          <a
+            href="https://github.com/Giorgiod91"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-secondary"
+          >
+            GitHub
+          </a>
+        </div>
+      </motion.div>
+    </section>
+  );
+}
+
+// ── Footer ─────────────────────────────────────────────────────────────────────
 
 function Footer() {
   return (
-    <footer className="border-t border-white/10 py-8">
-      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-5 sm:flex-row sm:px-8">
-        <span className="font-mono text-xs text-slate-400">
+    <footer className="border-t border-[rgba(20,18,16,0.12)] px-6 py-8 sm:px-8">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 sm:flex-row">
+        <span className="font-mono text-xs text-[#6c655a]">
           giorgio.dettmar@gmx.de
         </span>
-        <p className="font-mono text-xs text-slate-400">
-          © 2025 Giorgio Dettmar
+        <p className="font-mono text-xs text-[#a39a89]">
+          © {new Date().getFullYear()} Giorgio Dettmar
         </p>
-        <div className="flex items-center gap-1.5">
-          <span className="dot-live" style={{ width: 5, height: 5 }} />
-          <span className="font-mono text-xs text-slate-400">
-            all systems operational
-          </span>
-        </div>
       </div>
     </footer>
   );
 }
 
-// ── Page ───────────────────────────────────────────────────────────────────
+// ── Page ───────────────────────────────────────────────────────────────────────
 
 export default function HomePage() {
   return (
-    <main className="noise-bg relative min-h-screen overflow-x-hidden bg-[#0c1018] text-white">
+    <main className="relative min-h-screen overflow-x-hidden">
       <Navbar />
       <Hero />
       <Marquee />
-      <Projects />
-      <Stack />
+      <WhatIDo />
+      <Skills />
+      <Work />
       <About />
       <Contact />
       <Footer />
