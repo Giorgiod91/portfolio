@@ -30,8 +30,8 @@ const WHAT_I_DO = [
   },
   {
     num: "02",
-    title: "Agentic AI & automation",
-    desc: "Claude-powered agents with tool use and multi-step loops — the part of AI I find most exciting to build and keep learning about.",
+    title: "AI features & integrations",
+    desc: "LLM APIs (Claude, OpenAI) wired into real apps — generation, chat and tool use. The part of AI I find most exciting to build and keep learning about.",
   },
   {
     num: "03",
@@ -43,12 +43,12 @@ const WHAT_I_DO = [
 const SKILLS = [
   {
     cat: "Frontend",
-    items: ["Next.js", "React", "TypeScript", "Tailwind", "Framer Motion"],
+    items: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
   },
-  { cat: "Backend", items: ["Python", "FastAPI", "Flask", "Node.js", "Laravel"] },
-  { cat: "AI", items: ["Claude API", "OpenAI API", "LangChain", "TensorFlow", "CNN"] },
-  { cat: "Database", items: ["Supabase", "PostgreSQL", "MongoDB", "Prisma"] },
-  { cat: "Tools", items: ["Git", "Vercel", "Railway", "Docker", "Cursor", "v0"] },
+  { cat: "Backend", items: ["Python", "FastAPI", "Node.js"] },
+  { cat: "AI", items: ["Claude API", "OpenAI API"] },
+  { cat: "Database", items: ["PostgreSQL", "Supabase"] },
+  { cat: "Tools", items: ["Vercel", "Docker", "Git"] },
 ];
 
 const PROJECTS = [
@@ -202,23 +202,28 @@ function Hero() {
             <span className="eyebrow">Open to work · Germany</span>
           </motion.div>
 
+          <motion.p
+            variants={fadeUp}
+            className="mt-6 font-mono text-sm tracking-tight text-[#6c655a]"
+          >
+            Giorgio Dettmar
+          </motion.p>
+
           <motion.h1
             variants={fadeUp}
-            className="font-display text-[clamp(2.8rem,7vw,5rem)] font-semibold leading-[0.98] tracking-[-0.03em]"
+            className="mt-3 font-display text-[clamp(2.6rem,6.6vw,4.7rem)] font-semibold leading-[1.0] tracking-[-0.035em]"
           >
-            Giorgio
+            I build web &amp; AI
             <br />
-            Dettmar
+            products, <span className="font-normal italic">end-to-end.</span>
           </motion.h1>
 
           <motion.p
             variants={fadeUp}
             className="mt-6 max-w-md text-lg leading-relaxed text-[#4a443b]"
           >
-            Full-stack developer with an{" "}
-            <span className="text-[#1a1714]">AI focus</span> — I build and ship my
-            own web &amp; SaaS projects end-to-end, and I&apos;m always learning.
-            Next.js · TypeScript · Python · FastAPI.
+            Full-stack developer from Germany. Next.js · TypeScript · Python ·
+            FastAPI — I ship real projects and keep learning.
           </motion.p>
 
           <motion.div variants={fadeUp} className="mt-9 flex flex-wrap items-center gap-3">
@@ -233,7 +238,7 @@ function Hero() {
           <motion.div variants={fadeUp} className="mt-14 flex flex-wrap gap-x-12 gap-y-6">
             {[
               ["20+", "Projects shipped"],
-              ["Agentic AI", "Tool-use workflows"],
+              ["Live SaaS", "CrackTheTest.ai"],
               ["IHK + B.Sc.", "In progress"],
             ].map(([val, label]) => (
               <div key={label}>
