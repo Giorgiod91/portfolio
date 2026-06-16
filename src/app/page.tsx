@@ -31,12 +31,12 @@ const WHAT_I_DO = [
   {
     num: "02",
     title: "Agentic AI & automation",
-    desc: "Claude-powered agents with tool use, multi-step loops and real-world actions. I know when to trust the output — and when not to.",
+    desc: "Claude-powered agents with tool use and multi-step loops — the part of AI I find most exciting to build and keep learning about.",
   },
   {
     num: "03",
     title: "Full-stack web apps",
-    desc: "Auth, payments, realtime, databases. Stripe subscriptions, Supabase + RLS, PostgreSQL — production-ready, not demo-ware.",
+    desc: "Auth, payments, realtime, databases — Stripe subscriptions, Supabase + RLS, PostgreSQL. I try to wire these up properly, not just for a demo.",
   },
 ];
 
@@ -215,10 +215,10 @@ function Hero() {
             variants={fadeUp}
             className="mt-6 max-w-md text-lg leading-relaxed text-[#4a443b]"
           >
-            Software engineer building{" "}
-            <span className="text-[#1a1714]">backend-leaning SaaS systems</span> —
-            scalable architecture, APIs and AI integrations. Next.js · Python ·
-            FastAPI · PostgreSQL.
+            Full-stack developer with an{" "}
+            <span className="text-[#1a1714]">AI focus</span> — I build and ship my
+            own web &amp; SaaS projects end-to-end, and I&apos;m always learning.
+            Next.js · TypeScript · Python · FastAPI.
           </motion.p>
 
           <motion.div variants={fadeUp} className="mt-9 flex flex-wrap items-center gap-3">
@@ -533,21 +533,21 @@ function About() {
             className="space-y-4 text-base leading-relaxed text-[#4a443b]"
           >
             <p>
-              I&apos;m a software engineer from Hannover, Germany — studying
-              Computer Science (B.Sc.) while completing vocational training in
-              software development, and building production-style projects with
-              Next.js and Python (FastAPI).
+              I&apos;m a developer from Hannover, Germany — studying Computer
+              Science (B.Sc.) while completing vocational training in software
+              development. Self-taught since 2022, I learn best by building.
             </p>
             <p>
-              My current focus is{" "}
-              <span className="text-[#1a1714]">FlowDesk</span> — a multi-tenant
-              SaaS platform for teams, tasks and workflows, with a strong emphasis
-              on system design, authentication and API-driven architecture.
+              I build web and AI projects end-to-end with Next.js, TypeScript and
+              Python (FastAPI), and I&apos;m currently digging deeper into backend
+              and system design through{" "}
+              <span className="text-[#1a1714]">FlowDesk</span>, a multi-tenant SaaS
+              project I&apos;m working on.
             </p>
             <p>
-              I believe in building real systems, not just features — scalability,
-              clean architecture and production-ready engineering. Self-taught
-              since 2022, 20+ projects shipped.
+              I&apos;m genuinely curious about how good software is built — and
+              looking to join a team where I can learn from experienced developers
+              and contribute as a junior.
             </p>
           </motion.div>
         </motion.div>
