@@ -48,7 +48,7 @@ const SKILLS = [
   { cat: "Backend", items: ["Python", "FastAPI", "Flask", "Node.js", "Laravel"] },
   { cat: "AI", items: ["Claude API", "OpenAI API", "LangChain", "TensorFlow", "CNN"] },
   { cat: "Database", items: ["Supabase", "PostgreSQL", "MongoDB", "Prisma"] },
-  { cat: "Tools", items: ["Git", "Vercel", "Docker", "Cursor", "v0"] },
+  { cat: "Tools", items: ["Git", "Vercel", "Railway", "Docker", "Cursor", "v0"] },
 ];
 
 const PROJECTS = [
@@ -215,9 +215,10 @@ function Hero() {
             variants={fadeUp}
             className="mt-6 max-w-md text-lg leading-relaxed text-[#4a443b]"
           >
-            Full-stack developer building{" "}
-            <span className="text-[#1a1714]">AI-powered products</span> that solve
-            real problems. Next.js · Python · FastAPI · Claude API.
+            Software engineer building{" "}
+            <span className="text-[#1a1714]">backend-leaning SaaS systems</span> —
+            scalable architecture, APIs and AI integrations. Next.js · Python ·
+            FastAPI · PostgreSQL.
           </motion.p>
 
           <motion.div variants={fadeUp} className="mt-9 flex flex-wrap items-center gap-3">
@@ -532,14 +533,21 @@ function About() {
             className="space-y-4 text-base leading-relaxed text-[#4a443b]"
           >
             <p>
-              I&apos;m a full-stack developer from Hannover, Germany —
-              simultaneously doing an IHK apprenticeship in application
-              development and a B.Sc. in Computer Science.
+              I&apos;m a software engineer from Hannover, Germany — studying
+              Computer Science (B.Sc.) while completing vocational training in
+              software development, and building production-style projects with
+              Next.js and Python (FastAPI).
             </p>
             <p>
-              I build AI products end-to-end and care about the boring parts that
-              make software real: auth, payments, data, deployment. Self-taught
-              since 2022, 20+ projects shipped, always learning.
+              My current focus is{" "}
+              <span className="text-[#1a1714]">FlowDesk</span> — a multi-tenant
+              SaaS platform for teams, tasks and workflows, with a strong emphasis
+              on system design, authentication and API-driven architecture.
+            </p>
+            <p>
+              I believe in building real systems, not just features — scalability,
+              clean architecture and production-ready engineering. Self-taught
+              since 2022, 20+ projects shipped.
             </p>
           </motion.div>
         </motion.div>
