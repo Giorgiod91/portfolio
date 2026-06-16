@@ -540,14 +540,15 @@ function About() {
             <p>
               I&apos;m a developer from Hannover, Germany — studying Computer
               Science (B.Sc.) while completing vocational training in software
-              development. Self-taught since 2022, I learn best by building.
+              development. I&apos;ve been building my own projects since 2022 and
+              learn best by making real things.
             </p>
             <p>
               I build web and AI projects end-to-end with Next.js, TypeScript and
-              Python (FastAPI), and I&apos;m currently digging deeper into backend
-              and system design through{" "}
-              <span className="text-[#1a1714]">FlowDesk</span>, a multi-tenant SaaS
-              project I&apos;m working on.
+              Python (FastAPI), and I&apos;m currently going deeper into backend
+              and database design through{" "}
+              <span className="text-[#1a1714]">FlowDesk</span>, an app for managing
+              teams, projects and tasks.
             </p>
             <p>
               I&apos;m genuinely curious about how good software is built — and
