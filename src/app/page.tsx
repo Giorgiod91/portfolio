@@ -132,6 +132,12 @@ const MARQUEE = [
   "Framer Motion", "Vercel", "Docker", "Prisma",
 ];
 
+const STATS: [string, string][] = [
+  ["20+", "Projects shipped"],
+  ["Live SaaS", "CrackTheTest.ai"],
+  ["IHK + B.Sc.", "In progress"],
+];
+
 // ── Pulsing rings motif ────────────────────────────────────────────────────
 
 function PulseRings({ size = 320 }: { size?: number }) {
@@ -162,12 +168,12 @@ function Navbar() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled ? "border-b border-[rgba(20,18,16,0.1)] bg-[#e9e3d4]/80 backdrop-blur-md" : ""
+        scrolled ? "border-b border-line bg-sand/80 backdrop-blur-md" : ""
       }`}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5 sm:px-8">
         <a href="#" className="font-mono text-sm font-medium tracking-tight">
-          giorgio<span className="text-[#a39a89]">.dev</span>
+          giorgio<span className="text-accent">.dev</span>
         </a>
         <nav className="hidden items-center gap-8 md:flex">
           {["Work", "About", "Contact"].map((item) => (
@@ -188,39 +194,39 @@ function Navbar() {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden px-6 pt-36 pb-24 sm:px-8 sm:pt-44">
-      <div className="mx-auto grid max-w-6xl items-center gap-16 lg:grid-cols-[1.15fr_0.85fr]">
+    <section className="relative overflow-hidden px-6 pt-36 pb-20 sm:px-8 sm:pt-44">
+      <div className="mx-auto max-w-5xl">
         <motion.div variants={stagger} initial="hidden" animate="show">
-          <motion.div
-            variants={fadeUp}
-            className="mb-7 inline-flex items-center gap-2.5 rounded-full border border-[rgba(20,18,16,0.18)] px-3.5 py-1.5"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#1a1714] opacity-60" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-[#1a1714]" />
+          <motion.div variants={fadeUp}>
+            <span className="pill">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-70" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+              </span>
+              Open to work · Germany
             </span>
-            <span className="eyebrow">Open to work · Germany</span>
           </motion.div>
 
           <motion.p
             variants={fadeUp}
-            className="mt-6 font-mono text-sm tracking-tight text-[#6c655a]"
+            className="mt-7 font-mono text-sm tracking-tight text-ink-faint"
           >
-            Giorgio Dettmar
+            <span className="text-accent">giorgio@dev</span>
+            <span className="text-ink-faint">:~$</span> whoami
           </motion.p>
 
           <motion.h1
             variants={fadeUp}
-            className="mt-3 font-display text-[clamp(2.6rem,6.6vw,4.7rem)] font-semibold leading-[1.0] tracking-[-0.035em]"
+            className="font-display mt-3 text-[clamp(2.8rem,8vw,6rem)] font-bold leading-[0.98] tracking-[-0.035em]"
           >
             I build web &amp; AI
             <br />
-            products, <span className="font-normal italic">end-to-end.</span>
+            products, <span className="chip">end-to-end.</span>
           </motion.h1>
 
           <motion.p
             variants={fadeUp}
-            className="mt-6 max-w-md text-lg leading-relaxed text-[#4a443b]"
+            className="mt-7 max-w-xl text-lg leading-relaxed text-ink-soft"
           >
             Full-stack developer from Germany. Next.js · TypeScript · Python ·
             FastAPI — I ship real projects and keep learning.
@@ -235,28 +241,22 @@ function Hero() {
             </a>
           </motion.div>
 
-          <motion.div variants={fadeUp} className="mt-14 flex flex-wrap gap-x-12 gap-y-6">
-            {[
-              ["20+", "Projects shipped"],
-              ["Live SaaS", "CrackTheTest.ai"],
-              ["IHK + B.Sc.", "In progress"],
-            ].map(([val, label]) => (
-              <div key={label}>
-                <p className="text-2xl font-semibold tracking-tight">{val}</p>
-                <p className="eyebrow mt-1">{label}</p>
+          <motion.div
+            variants={fadeUp}
+            className="mt-14 grid gap-3 sm:grid-cols-3"
+          >
+            {STATS.map(([val, label]) => (
+              <div
+                key={label}
+                className="rounded-2xl border border-line bg-surface p-5"
+              >
+                <p className="font-display text-2xl font-bold tracking-tight">
+                  {val}
+                </p>
+                <p className="eyebrow mt-1.5">{label}</p>
               </div>
             ))}
           </motion.div>
-        </motion.div>
-
-        {/* Rings */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="flex justify-center lg:justify-end"
-        >
-          <PulseRings size={360} />
         </motion.div>
       </div>
     </section>
@@ -268,12 +268,12 @@ function Hero() {
 function Marquee() {
   const items = [...MARQUEE, ...MARQUEE];
   return (
-    <div className="overflow-hidden border-y border-[rgba(20,18,16,0.1)] py-4">
+    <div className="overflow-hidden border-y border-line py-4">
       <div className="marquee-track">
         {items.map((item, i) => (
           <span key={i} className="flex items-center">
-            <span className="font-mono text-sm text-[#6c655a]">{item}</span>
-            <span className="mx-6 h-1 w-1 rounded-full bg-[#a39a89]" />
+            <span className="font-mono text-sm text-ink-faint">{item}</span>
+            <span className="mx-6 h-1 w-1 rounded-full bg-accent" />
           </span>
         ))}
       </div>
@@ -301,13 +301,13 @@ function SectionHead({
       className="mb-14"
     >
       <motion.div variants={fadeUp} className="mb-4 flex items-center gap-3">
-        <span className="font-mono text-sm text-[#a39a89]">{index}</span>
-        <span className="h-px w-8 bg-[rgba(20,18,16,0.25)]" />
+        <span className="font-mono text-sm text-accent">{index}</span>
+        <span className="h-px w-8 bg-line-strong" />
         <span className="eyebrow">{label}</span>
       </motion.div>
       <motion.h2
         variants={fadeUp}
-        className="font-display max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl"
+        className="font-display max-w-2xl text-3xl font-bold tracking-tight sm:text-4xl"
       >
         {title}
       </motion.h2>
@@ -331,19 +331,19 @@ function WhatIDo() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
-          className="grid gap-px overflow-hidden rounded-2xl border border-[rgba(20,18,16,0.12)] bg-[rgba(20,18,16,0.1)] sm:grid-cols-3"
+          className="grid gap-3 sm:grid-cols-3"
         >
           {WHAT_I_DO.map((item) => (
             <motion.div
               key={item.num}
               variants={fadeUp}
-              className="bg-[#e9e3d4] p-8 transition-colors hover:bg-[#f2eee3]"
+              className="card p-8"
             >
-              <p className="font-mono text-sm text-[#a39a89]">{item.num}</p>
-              <h3 className="mt-6 text-lg font-semibold tracking-tight">
+              <p className="font-mono text-sm text-accent">{item.num}</p>
+              <h3 className="font-display mt-6 text-lg font-semibold tracking-tight">
                 {item.title}
               </h3>
-              <p className="mt-3 text-sm leading-relaxed text-[#6c655a]">
+              <p className="mt-3 text-sm leading-relaxed text-ink-soft">
                 {item.desc}
               </p>
             </motion.div>
@@ -370,7 +370,7 @@ function Skills() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.15 }}
-          className="divide-y divide-[rgba(20,18,16,0.12)] border-y border-[rgba(20,18,16,0.12)]"
+          className="divide-y divide-line border-y border-line"
         >
           {SKILLS.map(({ cat, items }) => (
             <motion.div
@@ -404,17 +404,17 @@ function ProjectCard({ project }: { project: (typeof PROJECTS)[0] }) {
   return (
     <motion.div variants={fadeUp} className="card group flex flex-col overflow-hidden">
       {/* Preview */}
-      <div className="overflow-hidden rounded-t-[1.25rem] border-b border-[rgba(20,18,16,0.1)]">
-        <div className="flex items-center gap-1.5 border-b border-[rgba(20,18,16,0.08)] bg-[rgba(20,18,16,0.03)] px-3 py-2">
-          <span className="h-2 w-2 rounded-full border border-[rgba(20,18,16,0.25)]" />
-          <span className="h-2 w-2 rounded-full border border-[rgba(20,18,16,0.25)]" />
-          <span className="h-2 w-2 rounded-full border border-[rgba(20,18,16,0.25)]" />
-          <span className="mx-auto truncate font-mono text-[10px] text-[#a39a89]">
+      <div className="overflow-hidden rounded-t-[1.5rem] border-b border-line">
+        <div className="flex items-center gap-1.5 border-b border-line bg-surface-2 px-3 py-2">
+          <span className="h-2 w-2 rounded-full border border-line-strong" />
+          <span className="h-2 w-2 rounded-full border border-line-strong" />
+          <span className="h-2 w-2 rounded-full border border-line-strong" />
+          <span className="mx-auto truncate font-mono text-[10px] text-ink-faint">
             {urlLabel}
           </span>
         </div>
         {project.screenshot ? (
-          <div className="relative h-40 overflow-hidden bg-[#dcd5c4]">
+          <div className="relative h-40 overflow-hidden bg-surface-2">
             <Image
               src={project.screenshot}
               alt={`${project.title} preview`}
@@ -424,7 +424,7 @@ function ProjectCard({ project }: { project: (typeof PROJECTS)[0] }) {
             />
           </div>
         ) : (
-          <div className="flex h-40 items-center justify-center bg-[#dcd5c4]">
+          <div className="flex h-40 items-center justify-center bg-surface-2">
             <PulseRings size={120} />
           </div>
         )}
@@ -433,10 +433,12 @@ function ProjectCard({ project }: { project: (typeof PROJECTS)[0] }) {
       {/* Body */}
       <div className="flex flex-1 flex-col p-6">
         <div className="mb-3 flex items-center justify-between">
-          <h3 className="text-base font-semibold tracking-tight">{project.title}</h3>
+          <h3 className="font-display text-base font-semibold tracking-tight">
+            {project.title}
+          </h3>
           <span className="eyebrow">{project.category}</span>
         </div>
-        <p className="mb-5 flex-1 text-sm leading-relaxed text-[#6c655a]">
+        <p className="mb-5 flex-1 text-sm leading-relaxed text-ink-soft">
           {project.desc}
         </p>
         <div className="mb-5 flex flex-wrap gap-1.5">
@@ -446,12 +448,12 @@ function ProjectCard({ project }: { project: (typeof PROJECTS)[0] }) {
             </span>
           ))}
         </div>
-        <div className="flex items-center gap-5 border-t border-[rgba(20,18,16,0.1)] pt-4">
+        <div className="flex items-center gap-5 border-t border-line pt-4">
           <a
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-mono text-xs text-[#6c655a] transition-colors hover:text-[#1a1714]"
+            className="font-mono text-xs text-ink-soft transition-colors hover:text-accent"
           >
             Code →
           </a>
@@ -460,7 +462,7 @@ function ProjectCard({ project }: { project: (typeof PROJECTS)[0] }) {
               href={project.live}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-xs text-[#6c655a] transition-colors hover:text-[#1a1714]"
+              className="font-mono text-xs text-ink-soft transition-colors hover:text-accent"
             >
               Live ↗
             </a>
@@ -493,8 +495,8 @@ function Work() {
                 onClick={() => setFilter(t)}
                 className={`rounded-full px-4 py-1.5 font-mono text-xs transition-all ${
                   filter === t
-                    ? "bg-[#1a1714] text-[#f2eee3]"
-                    : "border border-[rgba(20,18,16,0.2)] text-[#6c655a] hover:border-[#1a1714] hover:text-[#1a1714]"
+                    ? "bg-ink text-white"
+                    : "border border-line-strong bg-surface text-ink-soft hover:border-accent hover:text-accent"
                 }`}
               >
                 {t}
@@ -535,7 +537,7 @@ function About() {
           <SectionHead index="04" label="About" title="Where I'm coming from." />
           <motion.div
             variants={fadeUp}
-            className="space-y-4 text-base leading-relaxed text-[#4a443b]"
+            className="space-y-4 text-base leading-relaxed text-ink-soft"
           >
             <p>
               I&apos;m a developer from Hannover, Germany — studying Computer
@@ -547,8 +549,8 @@ function About() {
               I build web and AI projects end-to-end with Next.js, TypeScript and
               Python (FastAPI), and I&apos;m currently going deeper into backend
               and database design through{" "}
-              <span className="text-[#1a1714]">FlowDesk</span>, an app for managing
-              teams, projects and tasks.
+              <span className="font-medium text-accent">FlowDesk</span>, an app for
+              managing teams, projects and tasks.
             </p>
             <p>
               I&apos;m genuinely curious about how good software is built — and
@@ -573,14 +575,16 @@ function About() {
             <motion.div
               key={item.title}
               variants={fadeUp}
-              className="flex gap-5 border-t border-[rgba(20,18,16,0.12)] py-6"
+              className="flex gap-5 border-t border-line py-6"
             >
-              <p className="w-28 shrink-0 font-mono text-xs text-[#a39a89]">
+              <p className="w-28 shrink-0 font-mono text-xs text-accent">
                 {item.year}
               </p>
               <div>
-                <p className="font-semibold tracking-tight">{item.title}</p>
-                <p className="mt-1 text-sm text-[#6c655a]">{item.desc}</p>
+                <p className="font-display font-semibold tracking-tight">
+                  {item.title}
+                </p>
+                <p className="mt-1 text-sm text-ink-soft">{item.desc}</p>
               </div>
             </motion.div>
           ))}
@@ -606,10 +610,10 @@ function Contact() {
           <PulseRings size={480} />
         </div>
         <p className="eyebrow mb-5">05 · Let&apos;s build</p>
-        <h2 className="font-display text-4xl font-semibold tracking-tight sm:text-5xl">
+        <h2 className="font-display text-4xl font-bold tracking-tight sm:text-5xl">
           Got something in mind?
         </h2>
-        <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-[#6c655a]">
+        <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-ink-soft">
           Open to freelance work, internships, collaborations — or just a good
           conversation about building things.
         </p>
@@ -643,12 +647,12 @@ function Contact() {
 
 function Footer() {
   return (
-    <footer className="border-t border-[rgba(20,18,16,0.12)] px-6 py-8 sm:px-8">
+    <footer className="border-t border-line px-6 py-8 sm:px-8">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 sm:flex-row">
-        <span className="font-mono text-xs text-[#6c655a]">
+        <span className="font-mono text-xs text-ink-soft">
           giorgio.dettmar@gmx.de
         </span>
-        <p className="font-mono text-xs text-[#a39a89]">
+        <p className="font-mono text-xs text-ink-faint">
           © {new Date().getFullYear()} Giorgio Dettmar
         </p>
       </div>
