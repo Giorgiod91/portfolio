@@ -62,6 +62,15 @@ const PROJECTS = [
     screenshot: "/screenshots/crackthetest3.png",
   },
   {
+    title: "ClaudeShip",
+    desc: "A commercial Next.js + Supabase + Stripe + Claude boilerplate I built and sell — live payments, magic-link auth, automated GitHub repo delivery after purchase.",
+    tags: ["Next.js", "Claude API", "Supabase", "Stripe"],
+    category: "AI",
+    github: "",
+    live: "https://claudeship.vercel.app",
+    screenshot: null as string | null,
+  },
+  {
     title: "GamerConnect",
     desc: "Real-time gaming platform — Supabase live chat, AI teammate matching and tournament management. Zero latency on every live feature.",
     tags: ["Next.js", "Supabase", "TypeScript", "Framer Motion"],
@@ -134,7 +143,7 @@ const MARQUEE = [
 
 const STATS: [string, string][] = [
   ["20+", "Projects shipped"],
-  ["Live SaaS", "CrackTheTest.ai"],
+  ["2 live products", "CrackTheTest · ClaudeShip"],
   ["IHK + B.Sc.", "In progress"],
 ];
 
@@ -449,14 +458,16 @@ function ProjectCard({ project }: { project: (typeof PROJECTS)[0] }) {
           ))}
         </div>
         <div className="flex items-center gap-5 border-t border-line pt-4">
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-mono text-xs text-ink-soft transition-colors hover:text-accent"
-          >
-            Code →
-          </a>
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-xs text-ink-soft transition-colors hover:text-accent"
+            >
+              Code →
+            </a>
+          )}
           {project.live && (
             <a
               href={project.live}
