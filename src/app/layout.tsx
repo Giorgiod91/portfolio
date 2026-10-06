@@ -1,16 +1,10 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import { Geist, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
+const geist = Geist({
   subsets: ["latin"],
-  variable: "--font-inter",
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-space",
+  variable: "--font-geist",
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -19,9 +13,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Giorgio Dettmar — Full-Stack Developer",
+  title: "Giorgio Dettmar · Full-Stack Developer",
   description:
-    "Full-Stack Developer specializing in AI-powered applications, Next.js, React and TypeScript. Building the future, one commit at a time.",
+    "Full-Stack Developer in Ausbildung aus Hannover. Next.js, TypeScript, Azure DevOps und Docker. Eigene Produkte und Kunden-Projekte.",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
@@ -29,10 +23,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
-    >
+    <html lang="de" className={`${geist.variable} ${jetbrainsMono.variable}`}>
       <body>{children}</body>
     </html>
   );
