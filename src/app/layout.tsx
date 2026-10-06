@@ -13,9 +13,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Giorgio Dettmar · Full-Stack Developer",
+  title: "Giorgio Dettmar · Software Engineer",
   description:
-    "Full-Stack Developer in Ausbildung aus Hannover. Next.js, TypeScript, Azure DevOps und Docker. Eigene Produkte und Kunden-Projekte.",
+    "Software Engineer aus Hannover. Web-Apps mit Next.js und TypeScript, Praktikum bei Digital Cuisine, Fachinformatiker AE (IHK) bis 2027.",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
