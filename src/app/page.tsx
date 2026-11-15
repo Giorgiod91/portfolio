@@ -1,17 +1,20 @@
-import { Hero } from "~/components/nvim/hero";
-import { Kontakt, Praxis, Projekte, Stack } from "~/components/nvim/sections";
-import { Shell } from "~/components/nvim/shell";
+import { Claude } from "~/components/site/claude";
+import { Hero } from "~/components/site/hero";
+import { Atlas, Erfahrung, Kontakt, Projekte, Stack } from "~/components/site/sections";
+import { Shell } from "~/components/site/shell";
 
 export default function HomePage() {
   return (
     <Shell>
-      <main className="relative min-h-screen overflow-x-clip pb-8">
+      <main className="relative overflow-x-clip">
         <Hero />
-        <Praxis />
+        <Erfahrung />
+        <Atlas />
         <Projekte />
         <Stack />
         <Kontakt />
       </main>
+      <Claude />
     </Shell>
   );
 }
