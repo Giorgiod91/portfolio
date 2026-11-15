@@ -115,7 +115,7 @@ export function Atlas() {
       <Head
         eyebrow="gerade in arbeit"
         title="Session Atlas"
-        sub="Meine Claude-Code-Sessions als Neovim-Workspace. Dieses Portfolio ist im selben Stil gebaut."
+        sub="Meine Claude-Code-Sessions als Neovim-Workspace."
       />
       <div className="grid items-start gap-10 lg:grid-cols-[1.45fr_1fr]">
         <Reveal from="left">
