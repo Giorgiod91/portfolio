@@ -81,6 +81,7 @@ export const ATLAS = {
     { src: "/screenshots/session-atlas-dashboard.png", label: "Dashboard" },
     { src: "/screenshots/session-atlas-editor.png", label: "Editor" },
     { src: "/screenshots/session-atlas-graph.png", label: "Agenten-Graph" },
+    { src: "/screenshots/session-atlas-session-leiste.png", label: "Session-Leiste" },
     { src: "/screenshots/session-atlas-loops.png", label: "Loops" },
     { src: "/screenshots/session-atlas-limits.png", label: "Begleiter" },
     { src: "/screenshots/session-atlas-terminal.png", label: "Terminal" },
