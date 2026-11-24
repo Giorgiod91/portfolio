@@ -61,7 +61,7 @@ export function Hero() {
             <h1 className="mt-6 mb-4 text-[clamp(2.6rem,5.2vw,4.25rem)] leading-[1.02] font-extrabold tracking-[-0.045em]">
               <WordReveal text="Giorgio Dettmar" delay={0.1} />
               <br />
-              <WordReveal text="Junior Software Developer" delay={0.35} className="text-gradient text-[0.78em]" />
+              <WordReveal text="Software Engineer" delay={0.35} className="text-gradient text-[0.78em]" />
             </h1>
 
             <motion.p
@@ -146,7 +146,7 @@ const c = (v: string) => <span className="text-fg3 italic">{v}</span>;
 
 const CODE: React.ReactNode[] = [
   <>{k("const")} <span className="text-blue">giorgio</span> = {"{"}</>,
-  <>  rolle: {s("Junior Software Developer")},</>,
+  <>  rolle: {s("Software Engineer")},</>,
   <>  ort: {s("Hannover")},</>,
   <>  praktikum: {s("Digital Cuisine")},</>,
   <>  stack: [{s("Next.js")}, {s("TypeScript")}, {s("Python")}],</>,
