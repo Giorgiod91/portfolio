@@ -4,20 +4,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-const JOKES = [
-  "Wie verlässt man Vim? Gar nicht. Man zieht einfach um.",
-  "Es gibt 10 Arten von Menschen: die, die Binär verstehen, und die anderen.",
-  "Ein SQL-Query geht in eine Bar, sieht zwei Tische und fragt: „Darf ich joinen?“",
-  "Ich hab einen Witz über UDP. Aber vielleicht kommt er nicht an.",
-  "Debugging: ein Krimi, in dem du gleichzeitig Detektiv und Täter bist.",
-  "Ich würde dir einen Witz über Caching erzählen … hab ich schon, oder?",
-  "git commit -m „kleine Änderung“ · 47 Dateien geändert.",
-  "Das ist kein Bug. Das ist ein undokumentiertes Feature.",
-  "Tests beim ersten Versuch grün? Verdächtig. Nochmal laufen lassen.",
-  "Warum sind Entwickler im Dunkeln? Weil Light Mode Bugs anzieht.",
-  "Mein Code läuft. Keine Ahnung warum. Ich fass ihn nicht mehr an.",
-  "Psst: Die E-Mail-Adresse steht ganz unten. Ich sag’s nur.",
-];
+import { useLang } from "./i18n";
+
 
 // 12×8 pixel sprite, two leg frames. O = eye, X = body.
 const BODY = [
@@ -49,6 +37,8 @@ function Sprite({ frame }: { frame: number }) {
 }
 
 export function Claude() {
+  const { t } = useLang();
+  const JOKES = t.claude.jokes;
   const [hidden, setHidden] = useState(false);
   const [x, setX] = useState(16);
   const [target, setTarget] = useState(16);
@@ -63,7 +53,7 @@ export function Claude() {
   const nextJoke = useCallback(() => {
     if (order.current.length === 0) order.current = [...JOKES.keys()].sort(() => Math.random() - 0.5);
     return order.current.pop()!;
-  }, []);
+  }, [JOKES]);
 
   const walkSomewhere = useCallback(() => {
     const max = Math.max(16, window.innerWidth - 300);
@@ -147,10 +137,10 @@ export function Claude() {
             className="pointer-events-auto absolute bottom-12 left-0 w-64 origin-bottom-left rounded-xl rounded-bl-sm border border-line2 bg-card px-3.5 py-2.5 text-[13px] leading-snug text-fg shadow-[0_20px_40px_-12px_rgba(0,0,0,.8)]"
           >
             <span className="mb-1 flex items-center justify-between font-mono text-[11px] text-claude">
-              kleiner Claude
+              {t.claude.name}
               <button
                 type="button"
-                aria-label="Claude ausblenden"
+                aria-label={t.claude.hide}
                 onClick={() => {
                   setHidden(true);
                   try {
@@ -168,8 +158,8 @@ export function Claude() {
       </AnimatePresence>
       <motion.button
         type="button"
-        aria-label="Claude erzählt einen Witz"
-        title="Klick mich"
+        aria-label={t.claude.tell}
+        title={t.claude.click}
         onClick={() => {
           setWalking(false);
           setX(target);

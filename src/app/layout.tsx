@@ -6,9 +6,10 @@ const geist = Geist({ subsets: ["latin"], variable: "--font-geist" });
 const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://giorgiodettmar.com"),
   title: "Giorgio Dettmar · Software Engineer",
   description:
-    "Software Engineer aus Hannover. Next.js, TypeScript und Python, Praktikum bei Digital Cuisine, Fachinformatiker AE (IHK) bis 2027.",
+    "Software Engineer aus Hannover. Next.js, TypeScript und Python, KI-Integrationen und MCP-Server. Praktikum bei Digital Cuisine, offen für Freelance-Aufträge.",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 

@@ -7,7 +7,8 @@ import { useEffect, useState } from "react";
 
 import { cn } from "~/lib/utils";
 
-import { ATLAS, EDUCATION, LINKS, PROJECTS, STACK, WORK } from "./data";
+import { LINKS } from "./data";
+import { useLang } from "./i18n";
 import { GithubIcon, LinkedinIcon } from "./icons";
 import { ease, Magnetic, Reveal, SpotlightCard } from "./motion";
 
@@ -27,25 +28,26 @@ function Head({ eyebrow, title, sub }: { eyebrow: string; title: string; sub?: s
 // ── Erfahrung ─────────────────────────────────────────────────────────────
 
 export function Erfahrung() {
+  const { t, c } = useLang();
   return (
     <section id="erfahrung" className="mx-auto max-w-6xl px-5 py-24">
       <Head
-        eyebrow="erfahrung"
-        title="Echte Kunden-Software, im Team."
-        sub="Seit September 2026 im Praktikum bei einer Software-Agentur in Hannover. Eigene Features von Anfang bis Ende, mit Pull Requests und Code Review."
+        eyebrow={t.exp.eyebrow}
+        title={t.exp.title}
+        sub={t.exp.sub}
       />
       <Reveal>
         <div className="grid gap-8 rounded-3xl border border-line bg-card p-6 sm:p-8 lg:grid-cols-[230px_1fr]">
           <div>
             <div className="text-xl font-semibold tracking-tight">Digital Cuisine</div>
-            <div className="text-sm text-fg3">Software-Agentur, Hannover</div>
-            <div className="mt-1 font-mono text-sm text-fg3">Sep 2026 – Mär 2027</div>
+            <div className="text-sm text-fg3">{t.exp.company}</div>
+            <div className="mt-1 font-mono text-sm text-fg3">{t.exp.period}</div>
             <span className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-green/30 px-2.5 py-0.5 text-xs text-green">
-              ● läuft
+              {t.exp.running}
             </span>
           </div>
           <div className="grid gap-4 md:grid-cols-2">
-            {WORK.map((w, i) => (
+            {c.work.map((w, i) => (
               <Reveal
                 key={w.title}
                 from={i % 2 ? "right" : "left"}
@@ -84,7 +86,7 @@ export function Erfahrung() {
         </div>
       </Reveal>
       <div className="mt-4 grid gap-4 md:grid-cols-3">
-        {EDUCATION.map((e, i) => (
+        {c.education.map((e, i) => (
           <Reveal key={e.what} delay={i * 0.08}>
             <div className="h-full rounded-2xl border border-line bg-card p-5">
               <div className="font-mono text-xs text-fg3">{e.when}</div>
@@ -101,6 +103,8 @@ export function Erfahrung() {
 // ── Session Atlas (featured) ────────────────────────────────────────────────
 
 export function Atlas() {
+  const { t, c } = useLang();
+  const ATLAS = c.atlas;
   const [i, setI] = useState(0);
   const [paused, setPaused] = useState(false);
 
@@ -108,14 +112,14 @@ export function Atlas() {
     if (paused) return;
     const id = setInterval(() => setI((x) => (x + 1) % ATLAS.shots.length), 4500);
     return () => clearInterval(id);
-  }, [paused]);
+  }, [paused, ATLAS.shots.length]);
 
   return (
     <section id="atlas" className="mx-auto max-w-6xl px-5 py-24">
       <Head
-        eyebrow="gerade in arbeit"
+        eyebrow={t.atlas.eyebrow}
         title="Session Atlas"
-        sub="Meine Claude-Code-Sessions als Neovim-Workspace."
+        sub={t.atlas.sub}
       />
       <div className="grid items-start gap-10 lg:grid-cols-[1.45fr_1fr]">
         <Reveal from="left">
@@ -199,7 +203,7 @@ export function Atlas() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-xl bg-claude px-5 py-3 font-semibold text-bg"
             >
-              <GithubIcon className="size-4" /> Code auf GitHub
+              <GithubIcon className="size-4" /> {t.atlas.github}
             </a>
           </Magnetic>
         </Reveal>
@@ -211,11 +215,12 @@ export function Atlas() {
 // ── Projekte ───────────────────────────────────────────────────────────────
 
 export function Projekte() {
+  const { t, c } = useLang();
   return (
     <section id="projekte" className="mx-auto max-w-6xl px-5 py-24">
-      <Head eyebrow="projekte" title="Eigene Projekte" sub="Seit 2022 gebaut und live gestellt." />
+      <Head eyebrow={t.projects.eyebrow} title={t.projects.title} sub={t.projects.sub} />
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {PROJECTS.map((p, i) => (
+        {c.projects.map((p, i) => (
           <Reveal key={p.title} delay={(i % 3) * 0.08}>
             <SpotlightCard className="h-full rounded-2xl">
               <a
@@ -268,15 +273,16 @@ export function Projekte() {
 // ── Stack ────────────────────────────────────────────────────────────────
 
 export function Stack() {
+  const { t, c } = useLang();
   return (
     <section id="stack" className="mx-auto max-w-6xl px-5 py-24">
       <Head
-        eyebrow="stack"
-        title="Womit ich arbeite"
-        sub="Jeden Tag mit Claude Code und KI-Agenten. Was dabei rauskommt, wird mit Tests, Code Review und echten Daten geprüft."
+        eyebrow={t.stack.eyebrow}
+        title={t.stack.title}
+        sub={t.stack.sub}
       />
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {STACK.map(([group, items], i) => (
+        {c.stack.map(([group, items], i) => (
           <Reveal key={group} delay={i * 0.08}>
             <div className="h-full rounded-2xl border border-line bg-card p-5">
               <h3 className="mb-3 font-mono text-[13px] text-magenta">{group}</h3>
@@ -309,6 +315,7 @@ export function Stack() {
 // ── Kontakt ──────────────────────────────────────────────────────────────
 
 export function Kontakt() {
+  const { t } = useLang();
   const [copied, setCopied] = useState(false);
   return (
     <section id="kontakt" className="mx-auto max-w-6xl px-5 pt-24 pb-10">
@@ -320,17 +327,21 @@ export function Kontakt() {
           />
           <div className="relative">
             <div className="mb-3 font-mono text-[13px] text-blue">
-              <span className="text-fg3">## </span>kontakt
+              <span className="text-fg3">## </span>{t.contact.eyebrow}
             </div>
-            <h2 className="text-[clamp(2.2rem,5vw,3.5rem)] font-bold tracking-[-0.04em]">Lass uns reden.</h2>
-            <p className="mx-auto mt-3 max-w-md text-fg2">Fragen zu einem Projekt, zum Praktikum oder einfach Hallo.</p>
+            <h2 className="text-[clamp(2.2rem,5vw,3.5rem)] font-bold tracking-[-0.04em]">{t.contact.title}</h2>
+            <p className="mx-auto mt-3 max-w-md text-fg2">{t.contact.sub}</p>
+            <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-green/30 bg-green/[0.06] px-3.5 py-1.5 text-sm text-green">
+              <span className="size-1.5 rounded-full bg-green" aria-hidden />
+              {t.contact.freelance}
+            </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <Magnetic>
                 <a
                   href={`mailto:${LINKS.email}`}
                   className="inline-flex items-center gap-2 rounded-xl bg-fg px-5 py-3 font-semibold text-bg"
                 >
-                  E-Mail schreiben <ArrowUpRight className="size-4" aria-hidden />
+                  {t.contact.mail} <ArrowUpRight className="size-4" aria-hidden />
                 </a>
               </Magnetic>
               <button
@@ -344,7 +355,7 @@ export function Kontakt() {
                 className="inline-flex items-center gap-2 rounded-xl border border-line2 px-5 py-3 font-semibold transition-colors hover:bg-bg2"
               >
                 {copied ? <Check className="size-4 text-green" aria-hidden /> : <Copy className="size-4" aria-hidden />}
-                {copied ? "Kopiert" : "Adresse kopieren"}
+                {copied ? t.contact.copied : t.contact.copy}
               </button>
               <a
                 href={LINKS.linkedin}
@@ -369,7 +380,7 @@ export function Kontakt() {
         </div>
       </Reveal>
       <p className="mt-10 pb-20 text-center text-sm text-fg3">
-        © 2026 Giorgio Dettmar · <kbd className="rounded border border-line2 px-1 font-mono text-xs">:</kbd> öffnet Befehle
+        © 2026 Giorgio Dettmar · <kbd className="rounded border border-line2 px-1 font-mono text-xs">:</kbd> {t.contact.footer}
       </p>
     </section>
   );

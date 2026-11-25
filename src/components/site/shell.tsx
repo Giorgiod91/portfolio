@@ -6,7 +6,8 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { cn } from "~/lib/utils";
 
-import { LINKS, NAV, type SectionId } from "./data";
+import { LINKS, SECTION_IDS, type SectionId } from "./data";
+import { useLang } from "./i18n";
 
 export function goTo(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -26,8 +27,8 @@ export function Shell({ children }: { children: React.ReactNode }) {
       (es) => es.forEach((e) => e.isIntersecting && setActive(e.target.id as SectionId)),
       { rootMargin: "-45% 0px -50% 0px" },
     );
-    NAV.forEach((n) => {
-      const el = document.getElementById(n.id);
+    SECTION_IDS.forEach((id) => {
+      const el = document.getElementById(id);
       if (el) io.observe(el);
     });
     const top = document.getElementById("start");
@@ -104,9 +105,10 @@ function Statusline({
   visual: boolean;
   onCommand: () => void;
 }) {
+  const { t, c } = useLang();
   return (
     <motion.nav
-      aria-label="Abschnitte"
+      aria-label={t.shell.sections}
       initial={{ y: 80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 1.2, type: "spring", stiffness: 260, damping: 26 }}
@@ -119,25 +121,25 @@ function Statusline({
         {visual ? "VISUAL" : "NORMAL"}
       </motion.span>
       <div className="no-scrollbar flex overflow-x-auto">
-        {NAV.map((n) => (
+        {SECTION_IDS.map((id) => (
           <a
-            key={n.id}
-            href={`#${n.id}`}
-            aria-current={active === n.id ? "location" : undefined}
+            key={id}
+            href={`#${id}`}
+            aria-current={active === id ? "location" : undefined}
             className={cn(
               "relative shrink-0 px-3 py-2.5 transition-colors",
-              active === n.id ? "text-fg" : "text-fg2 hover:text-fg",
-              active !== n.id && "max-sm:hidden",
+              active === id ? "text-fg" : "text-fg2 hover:text-fg",
+              active !== id && "max-sm:hidden",
             )}
           >
-            {active === n.id && (
+            {active === id && (
               <motion.span
                 layoutId="nav-active"
                 className="absolute inset-0 bg-white/[0.06]"
                 transition={{ type: "spring", stiffness: 500, damping: 40 }}
               />
             )}
-            <span className="relative">{n.label}</span>
+            <span className="relative">{c.nav[id]}</span>
           </a>
         ))}
       </div>
@@ -145,7 +147,7 @@ function Statusline({
         type="button"
         onClick={onCommand}
         className="flex items-center gap-2 border-l border-line2 px-3 text-fg2 hover:text-fg"
-        aria-label="Befehle öffnen"
+        aria-label={t.shell.openCmds}
       >
         :
         <kbd className="rounded border border-line2 bg-bg2 px-1.5 text-[11px]">⌘K</kbd>
@@ -159,6 +161,8 @@ function Statusline({
 type Cmd = { cmd: string; hint: string; run: () => void };
 
 function Palette({ onClose }: { onClose: () => void }) {
+  const { t, c: content } = useLang();
+  const sh = t.shell;
   const [q, setQ] = useState("");
   const [sel, setSel] = useState(0);
   const input = useRef<HTMLInputElement>(null);
@@ -170,14 +174,19 @@ function Palette({ onClose }: { onClose: () => void }) {
 
   const cmds: Cmd[] = useMemo(
     () => [
-      ...NAV.map((n) => ({ cmd: n.label, hint: `Zu ${n.label}`, run: () => goTo(n.id) })),
-      { cmd: "mail", hint: "E-Mail schreiben", run: () => (location.href = `mailto:${LINKS.email}`) },
-      { cmd: "copy", hint: "E-Mail-Adresse kopieren", run: copy },
-      { cmd: "github", hint: "GitHub öffnen", run: () => open(LINKS.github, "_blank") },
-      { cmd: "linkedin", hint: "LinkedIn öffnen", run: () => open(LINKS.linkedin, "_blank") },
-      { cmd: "witz", hint: "Claude erzählt einen Witz", run: () => dispatchEvent(new Event("claude:joke")) },
+      ...SECTION_IDS.map((id) => ({
+        cmd: content.nav[id],
+        hint: `${sh.to} ${content.nav[id]}`,
+        run: () => goTo(id),
+      })),
+      { cmd: "mail", hint: sh.mail, run: () => (location.href = `mailto:${LINKS.email}`) },
+      { cmd: "copy", hint: sh.copy, run: copy },
+      { cmd: "github", hint: sh.github, run: () => open(LINKS.github, "_blank") },
+      { cmd: "linkedin", hint: sh.linkedin, run: () => open(LINKS.linkedin, "_blank") },
+      { cmd: sh.jokeCmd, hint: sh.joke, run: () => dispatchEvent(new Event("claude:joke")) },
+      { cmd: sh.langCmd, hint: sh.lang, run: () => (location.href = t.other.href) },
     ],
-    [copy],
+    [copy, content, sh, t.other.href],
   );
   const list = cmds.filter((c) => (c.cmd + c.hint).toLowerCase().includes(q.toLowerCase().replace(/^:/, "")));
 
@@ -200,7 +209,7 @@ function Palette({ onClose }: { onClose: () => void }) {
       <motion.div
         role="dialog"
         aria-modal="true"
-        aria-label="Befehle"
+        aria-label={sh.cmds}
         initial={{ opacity: 0, scale: 0.96, y: -10 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.97 }}
@@ -228,14 +237,14 @@ function Palette({ onClose }: { onClose: () => void }) {
                 setSel((s) => Math.max(0, s - 1));
               } else if (e.key === "Enter") run(list[sel]);
             }}
-            placeholder="befehl …"
-            aria-label="Befehl"
+            placeholder={sh.placeholder}
+            aria-label={sh.cmd}
             className="h-12 flex-1 bg-transparent text-sm text-fg outline-none placeholder:text-fg3"
           />
           <kbd className="rounded border border-line2 px-1.5 text-[11px] text-fg2">esc</kbd>
         </div>
         <ul className="max-h-80 overflow-y-auto p-1.5" role="listbox">
-          {list.length === 0 && <li className="px-3 py-6 text-center text-sm text-fg3">E492: Kein Befehl gefunden</li>}
+          {list.length === 0 && <li className="px-3 py-6 text-center text-sm text-fg3">{sh.none}</li>}
           {list.map((c, i) => (
             <li
               key={c.cmd}
@@ -250,7 +259,7 @@ function Palette({ onClose }: { onClose: () => void }) {
             >
               <span className="flex gap-3">
                 <span className="text-blue">:{c.cmd}</span>
-                <span className="text-fg3">{c.cmd === "copy" && copied ? "kopiert ✓" : c.hint}</span>
+                <span className="text-fg3">{c.cmd === "copy" && copied ? sh.copied : c.hint}</span>
               </span>
               {i === sel && <CornerDownLeft className="size-3.5 text-fg3" aria-hidden />}
             </li>

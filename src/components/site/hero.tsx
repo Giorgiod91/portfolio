@@ -5,10 +5,13 @@ import { ArrowRight, GitBranch } from "lucide-react";
 import { useRef } from "react";
 
 import { LINKS } from "./data";
+import { useLang } from "./i18n";
 import { GithubIcon } from "./icons";
 import { ease, Magnetic, WordReveal } from "./motion";
 
 export function Hero() {
+  const { t } = useLang();
+  const h = t.hero;
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const winY = useTransform(scrollYProgress, [0, 1], [0, 120]);
@@ -28,11 +31,20 @@ export function Hero() {
             giorgio<span className="caret h-[18px] w-[9px] bg-blue" />
           </a>
           <div className="hidden gap-7 text-sm text-fg2 md:flex">
-            <a href="#erfahrung" className="hover:text-fg">Erfahrung</a>
-            <a href="#atlas" className="hover:text-fg">Session Atlas</a>
-            <a href="#projekte" className="hover:text-fg">Projekte</a>
-            <a href="#kontakt" className="hover:text-fg">Kontakt</a>
+            <a href="#erfahrung" className="hover:text-fg">{h.nav.erfahrung}</a>
+            <a href="#atlas" className="hover:text-fg">{h.nav.atlas}</a>
+            <a href="#projekte" className="hover:text-fg">{h.nav.projekte}</a>
+            <a href="#kontakt" className="hover:text-fg">{h.nav.kontakt}</a>
           </div>
+          <div className="flex items-center gap-2">
+          <a
+            href={t.other.href}
+            hrefLang={t.other.lang}
+            aria-label={t.other.aria}
+            className="rounded-lg border border-line2 px-3 py-2 font-mono text-sm font-semibold text-fg2 transition-colors hover:bg-card hover:text-fg"
+          >
+            {t.other.label}
+          </a>
           <a
             href={LINKS.github}
             target="_blank"
@@ -41,6 +53,7 @@ export function Hero() {
           >
             <GithubIcon className="size-4" /> GitHub
           </a>
+          </div>
         </nav>
 
         <div className="grid items-center gap-14 pt-10 pb-24 lg:grid-cols-[1.05fr_.95fr] lg:pt-16 lg:pb-32">
@@ -55,7 +68,7 @@ export function Hero() {
                 <span className="absolute inset-0 animate-ping rounded-full bg-green/60" />
                 <span className="size-2 rounded-full bg-green" />
               </span>
-              Praktikum bei Digital Cuisine · läuft
+              {h.badge}
             </motion.span>
 
             <h1 className="mt-6 mb-4 text-[clamp(2.6rem,5.2vw,4.25rem)] leading-[1.02] font-extrabold tracking-[-0.045em]">
@@ -79,9 +92,11 @@ export function Hero() {
               transition={{ duration: 0.8, delay: 0.6, ease }}
               className="mb-8 max-w-xl text-lg leading-relaxed text-fg2"
             >
-              Web-Apps mit Next.js, TypeScript und Python, Frontend und Backend. Gerade im Praktikum bei{" "}
-              <strong className="font-semibold text-fg">Digital Cuisine</strong>, Abschluss als Fachinformatiker (IHK)
-              2027, parallel <strong className="font-semibold text-fg">B.Sc. Computer Science</strong>.
+              {h.intro[0]}
+              <strong className="font-semibold text-fg">{h.intro[1]}</strong>
+              {h.intro[2]}
+              <strong className="font-semibold text-fg">{h.intro[3]}</strong>
+              {h.intro[4]}
             </motion.p>
 
             <motion.div
@@ -95,7 +110,7 @@ export function Hero() {
                   href="#kontakt"
                   className="group inline-flex items-center gap-2 rounded-xl bg-fg px-5 py-3 font-semibold text-bg shadow-[0_10px_30px_-10px_rgba(238,240,246,.45)]"
                 >
-                  Kontakt aufnehmen
+                  {h.contact}
                   <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden />
                 </a>
               </Magnetic>
@@ -104,7 +119,7 @@ export function Hero() {
                   href="#projekte"
                   className="inline-flex items-center rounded-xl border border-line2 px-5 py-3 font-semibold transition-colors hover:bg-card"
                 >
-                  Projekte ansehen
+                  {h.projects}
                 </a>
               </Magnetic>
             </motion.div>
@@ -115,7 +130,7 @@ export function Hero() {
               transition={{ delay: 1.4 }}
               className="mt-8 hidden font-mono text-xs text-fg3 sm:block"
             >
-              Tipp: <Kbd>:</Kbd> öffnet Befehle · <Kbd>j</Kbd> <Kbd>k</Kbd> scrollt
+              {h.tip[0]} <Kbd>:</Kbd> {h.tip[1]} <Kbd>j</Kbd> <Kbd>k</Kbd> {h.tip[2]}
             </motion.p>
           </motion.div>
 
@@ -144,23 +159,29 @@ const k = (s: string) => <span className="text-magenta">{s}</span>;
 const s = (v: string) => <span className="text-green">&quot;{v}&quot;</span>;
 const c = (v: string) => <span className="text-fg3 italic">{v}</span>;
 
-const CODE: React.ReactNode[] = [
-  <>{k("const")} <span className="text-blue">giorgio</span> = {"{"}</>,
-  <>  rolle: {s("Software Engineer")},</>,
-  <>  ort: {s("Hannover")},</>,
-  <>  praktikum: {s("Digital Cuisine")},</>,
-  <>  stack: [{s("Next.js")}, {s("TypeScript")}, {s("Python")}],</>,
-  <>  gebaut: [</>,
-  <>    {s("Kunden-Plattform")}, {c("// Frontend + Backend")}</>,
-  <>    {s("Interne Bestell-App")}, {c("// Next.js + SQLite")}</>,
-  <>    {s("Session Atlas")}, {c("// Electron")}</>,
-  <>  ],</>,
-  <>  ausbildung: {s("Fachinformatiker AE")}, {c("// IHK 2027")}</>,
-  <>  studium: {s("B.Sc. Computer Science")}, {c("// 2028")}</>,
-  <>{"};"}</>,
-];
+function codeLines(h: ReturnType<typeof useLang>["t"]["hero"]): React.ReactNode[] {
+  const x = h.code;
+  return [
+    <>{k("const")} <span className="text-blue">giorgio</span> = {"{"}</>,
+    <>  {x.role}: {s("Software Engineer")},</>,
+    <>  {x.location}: {s("Hannover")},</>,
+    <>  {x.internship}: {s("Digital Cuisine")},</>,
+    <>  stack: [{s("Next.js")}, {s("TypeScript")}, {s("Python")}],</>,
+    <>  {x.built}: [</>,
+    <>    {s(x.platform)}, {c("// Frontend + Backend")}</>,
+    <>    {s(x.pipeline)}, {c("// LLM + Worker")}</>,
+    <>    {s(x.ordering)}, {c("// Next.js + SQLite")}</>,
+    <>    {s("Session Atlas")}, {c("// Electron")}</>,
+    <>  ],</>,
+    <>  {x.training}: {s(x.trainingValue)}, {c("// IHK 2027")}</>,
+    <>  {x.degree}: {s("B.Sc. Computer Science")}, {c("// 2028")}</>,
+    <>{"};"}</>,
+  ];
+}
 
 function CodeWindow() {
+  const { t } = useLang();
+  const CODE = codeLines(t.hero);
   return (
     <motion.div
       animate={{ y: [0, -10, 0] }}
@@ -171,7 +192,7 @@ function CodeWindow() {
         <span className="size-3 rounded-full bg-[#ff5f57]" />
         <span className="size-3 rounded-full bg-[#febc2e]" />
         <span className="size-3 rounded-full bg-[#28c840]" />
-        <span className="ml-3 text-xs text-fg3">~/giorgio/profil.ts — nvim</span>
+        <span className="ml-3 text-xs text-fg3">{t.hero.file}</span>
       </div>
       <motion.div
         initial="hidden"

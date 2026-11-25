@@ -1,20 +1,11 @@
-import { Claude } from "~/components/site/claude";
-import { Hero } from "~/components/site/hero";
-import { Atlas, Erfahrung, Kontakt, Projekte, Stack } from "~/components/site/sections";
-import { Shell } from "~/components/site/shell";
+import type { Metadata } from "next";
+
+import { Site } from "~/components/site/site";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/", languages: { de: "/", en: "/en" } },
+};
 
 export default function HomePage() {
-  return (
-    <Shell>
-      <main className="relative overflow-x-clip">
-        <Hero />
-        <Erfahrung />
-        <Atlas />
-        <Projekte />
-        <Stack />
-        <Kontakt />
-      </main>
-      <Claude />
-    </Shell>
-  );
+  return <Site lang="de" />;
 }
